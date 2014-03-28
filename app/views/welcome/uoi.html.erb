@@ -1,0 +1,28 @@
+<% if @transactions %>
+	<div class="transactions_box">
+		<% @transactions.each do |t| %>
+			<div class="transaction">
+				<div class="main">
+					<b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b> borrowed <b>$<%= t["Amount"] %></b> from you.</b>
+				</div>
+				<div class="description">
+					<%= t["Description"] %>
+				</div>
+			</div>
+			<div class="tabs">
+				<% if t["Paidback"] %>
+					<div class="paidback no">Paidback</div>
+				<% else %>
+					<div class="paidback yes"><a href="/welcome/paidback/<%= t['ID'] %>">Paidback?</a></div>
+				<% end %>
+				<div class="delete"><a href="/welcome/delete_transaction/<%= t['ID'] %>">Delete?</a></div>
+			</div>
+		<% end %>
+	</div>
+<% else %>
+	No one owes you money
+<% end %>
+
+<p>
+	<a href="/welcome/home">Go back home</a>
+</p>

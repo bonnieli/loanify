@@ -1,0 +1,79 @@
+@white: #ffffff;
+@one: #00A67C;
+@two: #1F7C65;
+@three: #006C51;
+@four: #35D2AB;
+@five: #5FD2B5;
+@grey: #ccc;
+@red: red;
+
+
+
+body {
+	background: @white;	
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+	font-size: 10pt;
+	margin: 0;
+	padding: 0;
+	
+	#header {
+		background: @one;
+		color: @white;
+		text-align: center;
+		padding: 10px 0;
+		font-size: 16pt;
+		letter-spacing: 3px;
+	}
+	.greeting {
+		background: @two;
+		color: @white;
+		padding: 10px;
+		text-transform: uppercase;
+		text-align: center;
+	}
+	#create_transaction, #iou_button, #uoi_button {
+		display: block;
+		padding: 20px;
+		text-decoration: none;
+		color: @two;
+		font-weight: bold;
+		text-align: center;
+		border-bottom: 1px solid #ccc;
+		&:hover, &:active {
+			background: @four;
+			color: @white;
+		}
+	}
+	.transaction {
+		background: @five;
+		color: @white;
+		padding: 10px;
+		.description {
+			border-top: 1px dashed @white;
+			margin-top: 5px;
+		}
+	}
+	.tabs {
+		height: 46px;	
+		a {
+			color: @white;
+			text-decoration: none;
+		}
+		.paidback, .reject, .delete {
+			float: left;
+			width: 50%;
+			padding: 15px 0;
+			text-align: center;
+		}
+		.paidback.no, .reject.yes {
+			background: @grey;
+		}
+		.paidback.yes {
+			background: @one;
+		}
+		.delete, .reject{
+			background: @red;
+		}
+	}
+}
