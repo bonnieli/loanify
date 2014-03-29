@@ -5,7 +5,7 @@
 	<input class="typeahead" type="text" name="Name" placeholder="Search for people" >
 	<input type="hidden" name="BorrowerKey">
 	<input type="hidden" name="B_Picture">
-	<input type="text" name="Amount" placeholder="Amount">
+	<input type="text" name="Amount" placeholder="Amount" id="Amount">
 	<select name="Currency_Name">
 	  <% if @all_currencies %>
 	  	<% @all_currencies.each do |c| %>
@@ -29,6 +29,8 @@
 <%= javascript_include_tag "typeahead.bundle", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "typeahead.jquery", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "typeahead.bundle.min", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "jquery.validate", "data-turbolinks-track" => true %>
 
 <script>
 	$(".datepicker").datepicker('hide');
@@ -74,5 +76,29 @@
 	}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
 		document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;
 		document.getElementById("create_transaction").elements["B_Picture"].value = suggestion.profile_picture;
+	});
+
+	$("#Amount").on("keyup", function(){
+    var valid = /^\d{0,4}(\.\d{0,2})?$/.test(this.value),
+      val = this.value;    
+    if(!valid){
+      this.value = val.substring(0, val.length - 1);
+    }
+	});
+
+	$("#create_transaction").validate({
+	  rules: {
+	    // simple rule, converted to {required:true}
+	    Name: "required",
+	    // compound rule
+	    Amount: {
+	      required: true,
+	      number: true
+	    },
+	    Date: "required",
+	    Description: {
+	    	maxlength: 255
+	    }
+	  }
 	});
 </script>
