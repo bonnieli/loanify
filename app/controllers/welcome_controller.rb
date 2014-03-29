@@ -11,18 +11,6 @@ class WelcomeController < ApplicationController
   	@user = session[:user_first_name] + ' ' + session[:user_last_name]
   end
 
-  def email
-    e = params[:email]
-    uri = URI('http://iou.azurewebsites.net/api/values')
-    email_info = {'Type' => 'email',
-                'ID' => session[:user],
-                'Email' => e }
-
-    res = Net::HTTP.post_form(uri,  email_info)
-    session[:email_check] = true
-    redirect_to welcome_home_url
-  end
-
   def create_transaction
     uri = URI('http://iou.azurewebsites.net/api/values')
     all_users = Net::HTTP.get(uri)
@@ -172,21 +160,20 @@ class WelcomeController < ApplicationController
   end
 
   def profile
-    #all_charts = {}
+    all_charts = {}
 
     #bubble graph
     #profile_info = {'graphtype' => 'History', 'split' => 'AR', 'id' => session[:user]}
 
     #line chart - Debt
-    #uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/Debt/' + session[:user])
-    #res = Net::HTTP.get(uri)
-    #all_charts.store('DebtLevel_d', JSON.parse(res))
+    uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/Debt/' + session[:user])
+    res = Net::HTTP.get(uri)
+    all_charts.store('DebtLevel_d', JSON.parse(res))
 
     #line chart - AR
     uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/AR/' + session[:user])
     res = Net::HTTP.get(uri)
     all_charts.store('DebtLevel_ar', JSON.parse(res))
-    @all_charts = res
 
     #pie chart - Debt
     #uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/Debt/' + session[:user])
@@ -198,7 +185,7 @@ class WelcomeController < ApplicationController
     #res = Net::HTTP.get(uri)
     #all_charts.store('Pie_ar', JSON.parse(res))
 
-    #@all_charts = all_charts.to_json
+    @all_charts = all_charts.to_json
     puts "@all_charts"
     puts @all_charts
   end
