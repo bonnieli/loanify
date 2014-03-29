@@ -11,9 +11,9 @@
 	<% @transactions.each do |t| %>
 		<div class="transaction_container">
 			<div class="transaction_box <% if t["Reject"] %> red <% elsif t["Paidback"] %> green <% end %>">
-				<img src="<%= t['BPicture'] %>" class="transaction_pic" />
+				<img src="<%= t['LPicture'] %>" class="transaction_pic" />
 				<div class="transaction_details">
-					You owe <b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b>
+					You owe <b><%= t["First_Name_L"] + ' ' + t["Last_Name_L"] %></b>
 					<div class="amount">
 						<%= t["Currency_Symbol"] %><%= t["Amount"] %> (<%= t["Currency_Name"] %>)
 					</div>

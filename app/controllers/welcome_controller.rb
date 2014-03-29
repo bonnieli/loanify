@@ -118,11 +118,42 @@ class WelcomeController < ApplicationController
   end
 
   def uoi
+    @status = "all"
   	uri = URI('http://iou.azurewebsites.net/api/values/Lender/' + session[:user])
   	res = Net::HTTP.get(uri)
   	unless res == '[]'
   		@transactions = JSON.parse(res)
   	end
+  end
+
+  def uoi_rejected
+    @status = "rejected"
+    uri = URI('http://iou.azurewebsites.net/api/values/Lender/Rejected/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :uoi
+  end
+
+  def uoi_paid
+    @status = "paid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Lender/Paidback/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :uoi
+  end
+
+  def uoi_unpaid
+    @status = "unpaid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Lender/Unpaid/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :uoi
   end
 
   def profile
