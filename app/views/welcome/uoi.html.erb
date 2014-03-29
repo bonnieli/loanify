@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
+
 <% if @transactions %>
 	<% @transactions.each do |t| %>
 		<div class="transaction_container">
@@ -25,7 +27,7 @@
 					<% end %>
 					- Requested on <%= Date.parse(t["Date"]).strftime("%d-%m-%Y") %>
 					<% unless t["Paidback"] or t["Reject"] %>
-						<a href="/welcome/paidback/<%= t['ID'] %>" class="paidback_button">Paidback</a>
+						<div class="pb-container"><input type="text" data-id=<%= t['ID'] %> class="pb-date" data-date-format="dd-mm-yyyy" placeholder="Paidback Date"></div>
 						<a href="#" data-id=<%= t['ID'] %> class="reject_button delete-confirm" >Delete</a>
 					<% end %>
 				</div>
@@ -40,6 +42,8 @@
 	<a href="/welcome/home">Go back home</a>
 </p>
 
+<%= javascript_include_tag "bootstrap-datepicker", "data-turbolinks-track" => true %>
+
 <%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
 <script>vex.defaultOptions.className = 'vex-theme-os';</script>
 <%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
@@ -47,22 +51,23 @@
 
 <script>
 	$(document).ready(function () {
-	    $(".transaction_details").click( function(e) {
-	    	e.preventDefault();
-	    	var arrow = $(this).children(".more_options");
-	        var box = $(this).siblings(".options");
-	        $(box).slideToggle(function () {
-	            if ($(box).is(":visible")) {
-	                $(arrow).css("background-image", "url(http://i.imgur.com/iqVwIpT.png)");
-	            } else {
-	                $(arrow).css("background-image", "url(http://i.imgur.com/xk7c9PB.png)");
-	            }
-	        });
-	    });
+		$(".pb-date").datepicker('hide');
+    $(".transaction_details").click( function(e) {
+    	e.preventDefault();
+    	var arrow = $(this).children(".more_options");
+    	var box = $(this).siblings(".options");
+      $(box).slideToggle(function () {
+        if ($(box).is(":visible")) {
+            $(arrow).css("background-image", "url(http://i.imgur.com/iqVwIpT.png)");
+        } else {
+            $(arrow).css("background-image", "url(http://i.imgur.com/xk7c9PB.png)");
+        }
+      });
+    });
 
-	    $(".delete-confirm").click( function() {
-	    	var t = $(this);
-	    	vex.dialog.confirm({
+    $(".delete-confirm").click( function() {
+    	var t = $(this);
+    	vex.dialog.confirm({
 				message: 'Are you sure you want to delete this transaction?',
 				callback: function(value) {
 					if (value) {
@@ -70,7 +75,23 @@
 					}
 				}
 			});
-	    })
-	
+		});
+
+		$('.pb-date').on('changeDate', function(ev){
+	    $(this).datepicker('hide');
+	    var date = $(this).val();
+	    var t = $(this);
+	    vex.dialog.open({
+			  message: 'Are you sure you want to select paidback date as ' + date + '?',
+			  callback: function(value) {
+			    if (value) {
+			      window.location.replace("/welcome/paidback/" + t.data("id") + "/" + date);
+			    }
+			  }
+			});
+		});
+
+
+			
 	});
 </script>

@@ -36,7 +36,6 @@ class WelcomeController < ApplicationController
   												'LenderKey' => session[:user].to_i,
   												'Amount' => params["Amount"].to_f,
                           'Currency_Name' => params["Currency_Name"],
-                          # 'Currency_Symbol' => params["Currency_Symbol"],
                           'Date' => Time.parse(params["Date"]),
   												'Description' => params["Description"],
   												'Type' => "transaction"
@@ -60,9 +59,12 @@ class WelcomeController < ApplicationController
 
   def paidback
     uri = URI('http://iou.azurewebsites.net/api/values/')
+    puts params
     transaction_info = {'Type' => 'paidback', 
-                        'ID' => params[:id]}
+                        'ID' => params[:id],
+                        'DatePaidBack' => Time.parse(params[:d])}
     res = Net::HTTP.post_form(uri,  transaction_info)
+    puts transaction_info
 
     redirect_to welcome_uoi_url
   end

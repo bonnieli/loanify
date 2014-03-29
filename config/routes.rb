@@ -12,7 +12,7 @@ IouApp::Application.routes.draw do
   get '/welcome/delete_transaction/:id', to: 'welcome#delete_transaction'
   get '/welcome/iou'
   get '/welcome/uoi'
-  get '/welcome/paidback/:id', to: 'welcome#paidback'
+  get '/welcome/paidback/:id/:d', to: 'welcome#paidback'
   get '/welcome/reject/:id', to: 'welcome#reject'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
