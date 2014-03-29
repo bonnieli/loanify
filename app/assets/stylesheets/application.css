@@ -24,7 +24,31 @@ body .greeting {
   text-transform: uppercase;
   text-align: center;
 }
-body #create_transaction,
+body #create_transaction {
+  width: 100%;
+}
+body #create_transaction .twitter-typeahead {
+  width: 100%;
+}
+body #create_transaction input,
+body #create_transaction select {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* Firefox */
+
+  margin-top: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+body #create_transaction #submit {
+  background-color: #3498db;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+body #c_transaction,
 body #iou_button,
 body #uoi_button {
   display: block;
@@ -35,10 +59,10 @@ body #uoi_button {
   text-align: center;
   border-bottom: 1px solid #ffffff;
 }
-body #create_transaction:hover,
+body #c_transaction:hover,
 body #iou_button:hover,
 body #uoi_button:hover,
-body #create_transaction:active,
+body #c_transaction:active,
 body #iou_button:active,
 body #uoi_button:active {
   background: rgba(255, 255, 255, 0.5);
@@ -83,4 +107,73 @@ body .tabs a:last-child {
 body .tabs .active {
   background-color: rgba(216, 216, 216, 0.59);
   color: #000;
+}
+body .transaction_container {
+  border: 1px solid #fff;
+  margin-top: 10px;
+}
+body .transaction_container .transaction_box.red {
+  border-left: 10px solid #c0392b;
+}
+body .transaction_container .transaction_box.green {
+  border-left: 10px solid #16a085;
+}
+body .transaction_container .transaction_box {
+  padding: 10px 10px 0 10px;
+  color: #414141;
+  border-left: 10px solid #f1c40f;
+}
+body .transaction_container .transaction_box .transaction_details {
+  padding-bottom: 10px;
+}
+body .transaction_container .transaction_box .transaction_details .amount {
+  font-size: 25pt;
+  color: #000;
+  letter-spacing: 1px;
+  font-family: arial;
+}
+body .transaction_container .transaction_box .transaction_details .more_options {
+  background-image: url('http://i.imgur.com/xk7c9PB.png');
+  height: 30px;
+  width: 30px;
+  margin-top: -40px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 20px 20px;
+  float: right;
+}
+body .transaction_container .transaction_box .transaction_pic {
+  border-radius: 50%;
+  margin-right: 10px;
+  float: left;
+}
+body .transaction_container .transaction_box .options {
+  padding: 10px;
+}
+body .transaction_container .transaction_box .options .transaction_description {
+  padding: 10px 0;
+}
+body .transaction_container .transaction_box .options h1 {
+  font-size: 8pt;
+  text-transform: uppercase;
+  margin: 0 0 5px 0;
+  color: #fff;
+}
+body .transaction_container .transaction_box .options .reject_button,
+body .transaction_container .transaction_box .options .paidback_button {
+  display: block;
+  text-align: center;
+  background: #e74c3c;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px 0;
+  margin: 10px 30px 0 30px;
+}
+body .transaction_container .transaction_box .options .paidback_button {
+  background: green;
+}
+body .transaction_container .transaction_box .options .rejected {
+  background: #ddd;
 }

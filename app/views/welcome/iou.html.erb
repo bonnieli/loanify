@@ -5,27 +5,42 @@
     <a href="#">Rejected</a>
 </div>
 			
+
+
 <% if @transactions %>
-	<div class="transactions_box">
-		<% @transactions.each do |t| %>
-			<div class="transaction">
-				<div class="main">
-					You owe <b><%= t["First_Name_L"] + ' ' + t["Last_Name_L"] %> $<%= t["Amount"] %></b>.
+	<% @transactions.each do |t| %>
+		<div class="transaction_container">
+			<div class="transaction_box <% if t["Reject"] %> red <% elsif t["Paidback"] %> green <% end %>">
+				<img src="<%= t['BPicture'] %>" class="transaction_pic" />
+				<div class="transaction_details">
+					You owe <b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b>
+					<div class="amount">
+						<%= t["Currency_Symbol"] %><%= t["Amount"] %> (<%= t["Currency_Name"] %>)
+					</div>
+					<a href="#" class="more_options"></a>
 				</div>
-				<div class="description">
-					<small><%= t["Description"] %></small>
+				<div class="options" style="display:none">
+					<div class="transaction_description">
+						<h1>Description</h1>
+						<%= t["Description"] %>
+					</div>
+					<h1>Status</h1>
+					<% if t["Paidback"] %>
+						Paidback on <%= Date.parse(t["DatePaidBack"]).strftime("%d-%m-%Y") %>
+					<% elsif t["Reject"] %>
+						Rejected
+					<% else %>
+						Unpaid
+					<% end %>
+					- Requested on <%= Date.parse(t["Date"]).strftime("%d-%m-%Y") %>
+					<% unless t["Paidback"] or t["Reject"] %>
+						<a href="/welcome/paidback/<%= t['ID'] %>" class="paidback_button">Paidback</a>
+						<a href="#" data-id=<%= t['ID'] %> class="reject_button reject-confirm" >Reject</a>
+					<% end %>
 				</div>
 			</div>
-			<div class="tabs">
-				<div class="paidback <%= t["Paidback"] ? "yes" : "no" %>">Paidback</div>
-				<% if t["Reject"] %>
-					<div class="reject yes">Rejected</div>
-				<% else %>
-					<div class="reject no"><a href="/welcome/reject/<%= t['ID'] %>">Reject</a></div>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 <% else %>
 	You owe no one money!
 <% end %>
@@ -33,3 +48,38 @@
 <p>
 	<a href="/welcome/home">Go back home</a>
 </p>
+
+<%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
+<script>vex.defaultOptions.className = 'vex-theme-os';</script>
+<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
+
+<script>
+	$(document).ready(function () {
+	    $(".transaction_details").click( function(e) {
+	    	e.preventDefault();
+	    	var arrow = $(this).children(".more_options");
+	        var box = $(this).siblings(".options");
+	        $(box).slideToggle(function () {
+	            if ($(box).is(":visible")) {
+	                $(arrow).css("background-image", "url(http://i.imgur.com/iqVwIpT.png)");
+	            } else {
+	                $(arrow).css("background-image", "url(http://i.imgur.com/xk7c9PB.png)");
+	            }
+	        });
+	    });
+
+	    $(".reject-confirm").click( function() {
+	    	var t = $(this);
+	    	vex.dialog.confirm({
+				message: 'Are you sure you want to reject this transaction?',
+				callback: function(value) {
+					if (value) {
+						window.location.replace("/welcome/reject/" + t.data("id"));
+					}
+				}
+			});
+	    })
+	
+	});
+</script>

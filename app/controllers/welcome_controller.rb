@@ -16,7 +16,11 @@ class WelcomeController < ApplicationController
     all_users = Net::HTTP.get(uri)
     unless all_users == '[]'
       @all_users = all_users
-      puts all_users
+    end
+    currency_uri = URI('http://iou.azurewebsites.net/api/values/Currency')
+    all_currencies = Net::HTTP.get(currency_uri)
+    unless all_currencies == '[]'
+      @all_currencies = JSON.parse(all_currencies)
     end
   end
 
@@ -27,12 +31,17 @@ class WelcomeController < ApplicationController
   												'First_Name_L' => session[:user_first_name],
   												'Last_Name_L' => session[:user_last_name],
   												'BorrowerKey' => params["BorrowerKey"].to_i,
-  												'LenderKey' => session[:user],
+                          'BPicture' => params["B_Picture"],
+                          'LPicture' => session[:user_pic],
+  												'LenderKey' => session[:user].to_i,
   												'Amount' => params["Amount"].to_f,
-  												'Date' => Time.at(params["Date"].to_i),
+                          'Currency_Name' => params["Currency_Name"],
+                          # 'Currency_Symbol' => params["Currency_Symbol"],
+                          'Date' => Time.parse(params["Date"]),
   												'Description' => params["Description"],
   												'Type' => "transaction"
   											}
+
   	puts transaction_info
   	res = Net::HTTP.post_form(uri, 	transaction_info)
   	puts res.body

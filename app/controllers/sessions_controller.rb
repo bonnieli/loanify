@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
 
     session[:user_first_name] = auth_hash['extra']['raw_info']['first_name']
     session[:user_last_name] = auth_hash['extra']['raw_info']['last_name']
+    session[:user_pic] = auth_hash['info']['image']
 
     redirect_to welcome_home_url
   end
