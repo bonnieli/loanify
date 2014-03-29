@@ -5,4 +5,16 @@ class UserMailer < ActionMailer::Base
   	@info = info
     mail(to: email, subject: 'You have a new transaction!')
   end
+
+  def paidback(email)
+  	mail(to: email, subject: 'You paidback a transaction!')
+  end
+
+  def reject(email)
+  	mail(to: email, subject: 'You rejected a transaction!')
+  end
+
+  def rejected(email)
+  	mail(to: email, subject: "You've been rejected!")
+  end
 end
