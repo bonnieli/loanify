@@ -15,15 +15,12 @@ class SessionsController < ApplicationController
     res = Net::HTTP.post_form(uri, 	fb_info)
     @user =  JSON.parse(res.body)["ID"] # should return user ID
     session[:email_check] = JSON.parse(res.body)["BoolCheck"]
-    # session[:email_check] = false
 
     session[:user] = @user.to_s
 
     session[:user_first_name] = auth_hash['extra']['raw_info']['first_name']
     session[:user_last_name] = auth_hash['extra']['raw_info']['last_name']
     session[:user_pic] = auth_hash['info']['image']
-
-    # @emailCheck = JSON.parse(res.body)["BoolCheck"]
 
     redirect_to welcome_home_url
   end

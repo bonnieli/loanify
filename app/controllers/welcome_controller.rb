@@ -4,6 +4,11 @@ class WelcomeController < ApplicationController
 	skip_before_filter :verify_authenticity_token
 
   def index
+    session[:email_check] = false
+    session[:user] = nil
+    session[:user_first_name] = nil
+    session[:user_last_name] = nil
+    session[:user_pic] = nil
     render :layout => false
   end
 
