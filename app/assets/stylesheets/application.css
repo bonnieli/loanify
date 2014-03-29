@@ -24,7 +24,29 @@ body .greeting {
   text-transform: uppercase;
   text-align: center;
 }
-body #create_transaction,
+body #create_transaction {
+  width: 100%;
+}
+body #create_transaction .twitter-typeahead {
+  width: 100%;
+}
+body #create_transaction input {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* Firefox */
+
+  margin-top: 0;
+  border-radius: 0;
+}
+body #create_transaction #submit {
+  background-color: #3498db;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+body #c_transaction,
 body #iou_button,
 body #uoi_button {
   display: block;
@@ -35,10 +57,10 @@ body #uoi_button {
   text-align: center;
   border-bottom: 1px solid #ffffff;
 }
-body #create_transaction:hover,
+body #c_transaction:hover,
 body #iou_button:hover,
 body #uoi_button:hover,
-body #create_transaction:active,
+body #c_transaction:active,
 body #iou_button:active,
 body #uoi_button:active {
   background: rgba(255, 255, 255, 0.5);

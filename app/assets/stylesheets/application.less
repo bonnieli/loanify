@@ -37,7 +37,28 @@ body {
 		text-transform: uppercase;
 		text-align: center;
 	}
-	#create_transaction, #iou_button, #uoi_button {
+
+	#create_transaction {
+		width: 100%;
+		.twitter-typeahead {
+			width: 100%;
+		}
+		input {
+			width: 100%;
+			border: 0;
+			padding: 10px;
+			box-sizing:border-box;
+			-moz-box-sizing:border-box; /* Firefox */
+			margin-top: 0;
+			border-radius: 0;
+		}
+		#submit {
+			background-color: #3498db;
+			text-transform: uppercase;
+			color: @white;
+		}
+	}
+	#c_transaction, #iou_button, #uoi_button {
 		display: block;
 		padding: 20px;
 		text-decoration: none;

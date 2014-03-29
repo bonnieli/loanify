@@ -27,12 +27,17 @@ class WelcomeController < ApplicationController
   												'First_Name_L' => session[:user_first_name],
   												'Last_Name_L' => session[:user_last_name],
   												'BorrowerKey' => params["BorrowerKey"].to_i,
-  												'LenderKey' => session[:user],
+                          'BPicture' => params["B_Picture"],
+                          'LPicture' => session[:user_pic],
+  												'LenderKey' => session[:user].to_i,
   												'Amount' => params["Amount"].to_f,
-  												'Date' => Time.at(params["Date"].to_i),
+                          'Currency_Name' => params["Currency_Name"],
+                          'Currency_Symbol' => params["Currency_Symbol"],
+                          'Date' => Time.parse(params["Date"]),
   												'Description' => params["Description"],
   												'Type' => "transaction"
   											}
+
   	puts transaction_info
   	res = Net::HTTP.post_form(uri, 	transaction_info)
   	puts res.body
