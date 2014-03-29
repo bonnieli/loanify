@@ -1,8 +1,8 @@
 <div class="tabs">
-    <a href="#" class="active">All</a>
-    <a href="#">Unpaid</a>
-    <a href="#">Paid</a>
-    <a href="#">Rejected</a>
+    <a href="/welcome/iou" <% if @status == "all" %>class="active"<% end %>>All</a>
+    <a href="/welcome/iou/unpaid" <% if @status == "all" %>class="unpaid"<% end %>>Unpaid</a>
+    <a href="/welcome/iou/paid" <% if @status == "all" %>class="paid"<% end %>>Paid</a>
+    <a href="/welcome/iou/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
 </div>
 			
 
@@ -33,8 +33,7 @@
 						Unpaid
 					<% end %>
 					- Requested on <%= Date.parse(t["Date"]).strftime("%d-%m-%Y") %>
-					<% unless t["Paidback"] or t["Reject"] %>
-						<a href="/welcome/paidback/<%= t['ID'] %>" class="paidback_button">Paidback</a>
+					<% unless t["Reject"] or t["Paidback"] %>
 						<a href="#" data-id=<%= t['ID'] %> class="reject_button reject-confirm" >Reject</a>
 					<% end %>
 				</div>

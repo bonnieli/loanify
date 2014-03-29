@@ -79,11 +79,42 @@ class WelcomeController < ApplicationController
   end
 
   def iou
+    @status = "all"
   	uri = URI('http://iou.azurewebsites.net/api/values/Borrower/' + session[:user])
   	res = Net::HTTP.get(uri)
   	unless res == '[]'
   		@transactions = JSON.parse(res)
   	end
+  end
+
+  def iou_rejected
+    @status = "rejected"
+    uri = URI('http://iou.azurewebsites.net/api/values/Borrower/Rejected/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :iou
+  end
+
+  def iou_paid
+    @status = "paid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Borrower/Paidback/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :iou
+  end
+
+  def iou_unpaid
+    @status = "unpaid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Borrower/Unpaid/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :iou
   end
 
   def uoi
