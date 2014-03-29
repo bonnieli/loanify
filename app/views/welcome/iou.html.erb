@@ -1,7 +1,7 @@
 <div class="tabs">
     <a href="/welcome/iou" <% if @status == "all" %>class="active"<% end %>>All</a>
-    <a href="/welcome/iou/unpaid" <% if @status == "all" %>class="unpaid"<% end %>>Unpaid</a>
-    <a href="/welcome/iou/paid" <% if @status == "all" %>class="paid"<% end %>>Paid</a>
+    <a href="/welcome/iou/unpaid" <% if @status == "unpaid" %>class="active"<% end %>>Unpaid</a>
+    <a href="/welcome/iou/paid" <% if @status == "paid" %>class="active"<% end %>>Paid</a>
     <a href="/welcome/iou/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
 </div>
 			

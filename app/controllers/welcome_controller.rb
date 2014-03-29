@@ -57,6 +57,18 @@ class WelcomeController < ApplicationController
   	redirect_to welcome_home_url
   end
 
+  def email
+    e = params[:email]
+    uri = URI('http://iou.azurewebsites.net/api/values')
+    email_info = {'Type' => 'email',
+               'ID' => session[:user],
+               'Email' => e }
+
+    res = Net::HTTP.post_form(uri,  email_info)
+    session[:email_check] = true
+    redirect_to welcome_home_url
+  end
+
   def delete_transaction
   	http = Net::HTTP.new('iou.azurewebsites.net')
   	request = Net::HTTP::Delete.new('/api/values/' + params[:id])

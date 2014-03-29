@@ -5,8 +5,8 @@
 
 <a href="/welcome/profile" id="profile">MY PROFILE</a>
 <a href="/welcome/create_transaction" id="c_transaction">CREATE TRANSACTION</a>
-<a href="/welcome/iou" id="iou_button">IOUs</a>
-<a href="/welcome/uoi" id="uoi_button">UOIs</a>
+<a href="/welcome/iou" id="iou_button">People whom I owe money to</a>
+<a href="/welcome/uoi" id="uoi_button">People who owes me money</a>
 
 <%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
 <script>vex.defaultOptions.className = 'vex-theme-os';</script>
@@ -21,8 +21,15 @@
 				placeholder: 'Email',
 				callback: function(value) {
 					if (value != false) {
-						var e = encodeURIComponent(value.replace(/\./g, '&#46;'))
-						window.location.replace("/welcome/home/" + e);
+						var x = value;
+						var atpos = x.indexOf("@");
+						var dotpos = x.lastIndexOf(".");
+						if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+							location.reload();
+						} else {
+							var e = encodeURIComponent(value.replace(/\./g, '&#46;'))
+							window.location.replace("/welcome/home/" + e);
+						}
 					}
 				}
 			});
