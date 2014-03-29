@@ -14,6 +14,7 @@ IouApp::Application.routes.draw do
   get '/welcome/uoi'
   get '/welcome/paidback/:id', to: 'welcome#paidback'
   get '/welcome/reject/:id', to: 'welcome#reject'
+  get '/welcome/profile', to: 'welcome#profile'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
