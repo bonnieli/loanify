@@ -1,0 +1,15 @@
+<%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
+<script>vex.defaultOptions.className = 'vex-theme-os';</script>
+<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
+
+<script>
+$(document).ready( function() {
+	vex.dialog.confirm({
+		message: 'Invalid - The paidback date you entered was before the requested date. No changes have been made',
+		callback: function(value) {
+			window.location.replace("/welcome/uoi/" );
+		}
+	});
+})
+</script>

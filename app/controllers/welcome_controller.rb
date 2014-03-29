@@ -73,10 +73,16 @@ class WelcomeController < ApplicationController
                         'DatePaidBack' => Time.parse(params[:d])}
     res = Net::HTTP.post_form(uri,  transaction_info)
 
-    puts res.body
-    UserMailer.paidback(CGI.unescapeHTML(JSON.parse(res.body)["Email"])).deliver
+    if (JSON.parse(res.body)["BoolCheck"])
+      UserMailer.paidback(CGI.unescapeHTML(JSON.parse(res.body)["Email"])).deliver
+      redirect_to welcome_uoi_url
+    else 
+      redirect_to welcome_paidback_error_url
+    end  
+  end
 
-    redirect_to welcome_uoi_url
+  def pb_error
+
   end
 
   def reject
