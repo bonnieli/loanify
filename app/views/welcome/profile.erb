@@ -3,7 +3,7 @@
 <%= javascript_include_tag "canvasjs.min", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "excanvas", "data-turbolinks-track" => true %>
 
-<div id="DebtLevel" style="height: 260px; width: 100%;"></div>
+<div id="BalanceHistory" style="height: 260px; width: 100%;"></div>
 
 <script>
   var raw_all_charts = <%= raw CGI.unescapeHTML(@all_charts) %>;
@@ -28,14 +28,14 @@
               type: "line",
               xValueType: "dateTime",
               xValueFormatString: "MM/DD",
-              dataPoints: dp_BalanceHistory(raw_all_charts)
-            }//,
-            //{
-            //  type: "line",
-            //  xValueType: "dateTime",
-            //  xValueFormatString: "MM/DD",
-            //  dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_ar)
-            //}
+              dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_d)
+            },
+            {
+              type: "line",
+              xValueType: "dateTime",
+              xValueFormatString: "MM/DD",
+              dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_ar)
+            }
       ]
     });
   c_BalanceHistory.render();
