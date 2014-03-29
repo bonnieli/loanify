@@ -57,6 +57,9 @@ class WelcomeController < ApplicationController
   	res = Net::HTTP.post_form(uri, 	transaction_info)
   	puts res.body
 
+    @email_to = params["BorrowerEmail"]
+    UserMailer.new_transaction(@email)
+
   	redirect_to welcome_home_url
   end
 
