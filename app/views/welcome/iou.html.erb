@@ -15,7 +15,7 @@
 				<div class="transaction_details">
 					You owe <b><%= t["First_Name_L"] + ' ' + t["Last_Name_L"] %></b>
 					<div class="amount">
-						<%= t["Currency_Symbol"] %><%= t["Amount"] %> (<%= t["Currency_Name"] %>)
+						$<%= sprintf('%.2f', t["Amount"]) %>
 					</div>
 					<a href="#" class="more_options"></a>
 				</div>
