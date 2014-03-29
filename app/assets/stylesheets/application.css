@@ -88,6 +88,12 @@ body .transaction_container {
   border: 1px solid #fff;
   margin-top: 10px;
 }
+body .transaction_container .transaction_box.red {
+  border-left: 10px solid #c0392b;
+}
+body .transaction_container .transaction_box.green {
+  border-left: 10px solid #16a085;
+}
 body .transaction_container .transaction_box {
   padding: 10px 10px 0 10px;
   color: #414141;

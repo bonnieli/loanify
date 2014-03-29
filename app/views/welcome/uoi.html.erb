@@ -1,7 +1,7 @@
 <% if @transactions %>
 		<% @transactions.each do |t| %>
 			<div class="transaction_container">
-				<div class="transaction_box">
+				<div class="transaction_box <% if t["Reject"] %> red <% elsif t["Paidback"] %> green <% end %>">
 					<img src="<%= t['BPicture'] %>" class="transaction_pic" />
 					<div class="transaction_details">
 						<b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b> owes you
@@ -16,9 +16,18 @@
 							<%= t["Description"] %>
 						</div>
 						<h1>Status</h1>
-						Requested on <%= Date.parse("2012-03-06 00:00:00 UTC").strftime("%d-%m-%Y") %>
-						<a href="/welcome/paidback/<%= t['ID'] %>" class="paidback_button">Paidback</a>
-						<a href="#" data-id=<%= t['ID'] %> class="reject_button delete-confirm" >Delete</a>
+						<% if t["Paidback"] %>
+							Paidback on <%= Date.parse(t["DatePaidBack"]).strftime("%d-%m-%Y") %>
+						<% elsif t["Reject"] %>
+							Rejected
+						<% else %>
+							Unpaid
+						<% end %>
+						- Requested on <%= Date.parse(t["Date"]).strftime("%d-%m-%Y") %>
+						<% unless t["Paidback"] or t["Reject"] %>
+							<a href="/welcome/paidback/<%= t['ID'] %>" class="paidback_button">Paidback</a>
+							<a href="#" data-id=<%= t['ID'] %> class="reject_button delete-confirm" >Delete</a>
+						<% end %>
 					</div>
 				</div>
 			</div>		<% end %>
