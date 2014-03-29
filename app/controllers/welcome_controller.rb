@@ -11,6 +11,18 @@ class WelcomeController < ApplicationController
   	@user = session[:user_first_name] + ' ' + session[:user_last_name]
   end
 
+  def email
+    e = params[:email]
+    uri = URI('http://iou.azurewebsites.net/api/values')
+    email_info = {'Type' => 'email',
+                'ID' => session[:user],
+                'Email' => e }
+
+    res = Net::HTTP.post_form(uri,  email_info)
+    session[:email_check] = true
+    redirect_to welcome_home_url
+  end
+
   def create_transaction
     uri = URI('http://iou.azurewebsites.net/api/values')
     all_users = Net::HTTP.get(uri)

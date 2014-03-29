@@ -48,6 +48,7 @@ body #create_transaction #submit {
   text-transform: uppercase;
   color: #ffffff;
 }
+body #profile,
 body #c_transaction,
 body #iou_button,
 body #uoi_button {
@@ -59,9 +60,11 @@ body #uoi_button {
   text-align: center;
   border-bottom: 1px solid #ffffff;
 }
+body #profile:hover,
 body #c_transaction:hover,
 body #iou_button:hover,
 body #uoi_button:hover,
+body #profile:active,
 body #c_transaction:active,
 body #iou_button:active,
 body #uoi_button:active {

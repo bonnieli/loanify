@@ -6,3 +6,25 @@
 <a href="/welcome/create_transaction" id="c_transaction">CREATE TRANSACTION</a>
 <a href="/welcome/iou" id="iou_button">IOUs</a>
 <a href="/welcome/uoi" id="uoi_button">UOIs</a>
+
+<%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
+<script>vex.defaultOptions.className = 'vex-theme-os';</script>
+<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
+<script>
+	$(document).ready( function() {
+		var check = <%= session[:email_check] %>;
+		if (!check) {
+				vex.dialog.prompt({
+				message: 'Please enter your e-mail',
+				placeholder: 'Email',
+				callback: function(value) {
+					if (value != false) {
+						var e = encodeURIComponent(value.replace(/\./g, '&#46;'))
+						window.location.replace("/welcome/home/" + e);
+					}
+				}
+			});
+		}
+	})
+</script>
