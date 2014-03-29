@@ -1,5 +1,9 @@
+<div id="the-basics">
+  <input class="typeahead" type="text" placeholder="States of USA">
+</div>
+
 <form action="/welcome/post_transaction" method="post">
-	Name: <input class="typeahead" type="text" placeholder="Search for people"><br>
+	Name: <input type="text" name="Name"><br>
 	Borrower Key: <input type="text" name="BorrowerKey"><br>
   Amount: <input type="text" name="Amount"><br>
   Today's Date: <input type="text" name="Date" value=<%= Time.now.to_i %>><br>
@@ -11,4 +15,45 @@
 	<a href="/welcome/home">Go back home</a>
 </p>
 
-<%= javascript_include_tag "create_transaction", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "typeahead.bundle", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "typeahead.jquery", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "typeahead.bundle.min", "data-turbolinks-track" => true %>
+
+<script>
+var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substringRegex;
+ 
+    // an array that will be populated with substring matches
+    matches = [];
+ 
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+ 
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str.First_Name)) {
+        // the typeahead jQuery plugin expects suggestions to a
+        // JavaScript object, refer to typeahead docs for more info
+        matches.push({ value: str.name });
+      }
+    });
+ 
+    cb(matches);
+  };
+};
+ 
+var all_users = <%= @all_users%>;
+
+$('#the-basics .typeahead').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'names',
+  displayKey: 'value',
+  source: substringMatcher(all_users)
+});
+</script>
