@@ -24,7 +24,7 @@ class WelcomeController < ApplicationController
   												'BorrowerKey' => params["BorrowerKey"].to_i,
   												'LenderKey' => session[:user],
   												'Amount' => params["Amount"].to_f,
-  												'Date' => params["Date"].to_i,
+  												'Date' => Time.at(params["Date"].to_i),
   												'Description' => params["Description"],
   												'Type' => "transaction"
   											}

@@ -1,8 +1,10 @@
+<%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
+
 <form action="/welcome/post_transaction" method="post">
 	Name: <input class="typeahead" type="text" placeholder="Search for people"><br>
 	Borrower Key: <input type="text" name="BorrowerKey"><br>
   Amount: <input type="text" name="Amount"><br>
-  Today's Date: <input type="text" name="Date" value=<%= Time.now.to_i %>><br>
+  Today's Date: <input type="text" name="Date" class="datepicker" data-date-picker="dd-mm-yyyy"><br>
   Description: <input type="textbox" name="Description"><br>
   <input type="submit" value="Submit">
 </form>
@@ -12,3 +14,8 @@
 </p>
 
 <%= javascript_include_tag "create_transaction", "data-turbolinks-track" => true %>
+
+<%= javascript_include_tag "bootstrap-datepicker", "data-turbolinks-track" => true %>
+<script>
+$(".datepicker").datepicker('hide');
+</script>
