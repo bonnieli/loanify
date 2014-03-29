@@ -8,7 +8,7 @@ IouApp::Application.routes.draw do
   post '/welcome/post_transaction', to: 'welcome#post_transaction'
 
   get '/welcome/home'
-  get '/welcome/create_transaction'
+  get '/welcome/create_transaction', to: 'welcome#create_transaction'
   get '/welcome/delete_transaction/:id', to: 'welcome#delete_transaction'
   get '/welcome/iou'
   get '/welcome/uoi'
