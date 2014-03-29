@@ -93,5 +93,25 @@ class WelcomeController < ApplicationController
   end
 
   def profile
+    @all_charts = {}
+
+    #bubble graph
+    #profile_info = {'graphtype' => 'History', 'split' => 'AR', 'id' => session[:user]}
+
+    #line chart - Debt
+    uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/Debt/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @all_charts.store('DebtLevel_d', res)
+    end
+    #line chart - AR
+    uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/AR/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @all_charts.store('DebtLevel_ar', res)
+    end
+
+    puts "@all_charts"
+    puts @all_charts
   end
 end

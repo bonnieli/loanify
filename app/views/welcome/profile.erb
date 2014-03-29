@@ -1,0 +1,43 @@
+
+<%= javascript_include_tag "canvasjs", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "canvasjs.min", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "excanvas", "data-turbolinks-track" => true %>
+
+<div id="DebtLevel" style="height: 260px; width: 100%;"></div>
+
+<script>
+  var raw_all_charts = <%= raw CGI.unescapeHTML(@all_charts) %>;
+
+  //Debt Level History -- Line Chart
+  var dp_BalanceHistory = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ x: new Date(data.StartDate), y: data.Amount});
+    });
+    return dataPoints;
+  };
+  
+  var c_BalanceHistory = new CanvasJS.Chart("BalanceHistory",
+    {
+      title:{text: "Account Balance History"},
+      axisX: {valueFormatString: "MM/DD",
+              interval:1,
+              intervalType: "day"},
+      axisY:{includeZero: true},
+      data: [{
+              type: "line",
+              xValueType: "dateTime",
+              xValueFormatString: "MM/DD",
+              dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_d)
+            },
+            {
+              type: "line",
+              xValueType: "dateTime",
+              xValueFormatString: "MM/DD",
+              dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_ar)
+            }
+      ]
+    });
+    c_BalanceHistory.render();
+
+</script>
