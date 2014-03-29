@@ -178,14 +178,14 @@ class WelcomeController < ApplicationController
     all_charts.store('DebtLevel_ar', JSON.parse(res))
 
     #pie chart - Debt
-    #uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/Debt/' + session[:user])
-    #res = Net::HTTP.get(uri)
-    #all_charts.store('Pie_d', JSON.parse(res))
+    uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/Debt/' + session[:user])
+    res = Net::HTTP.get(uri)
+    all_charts.store('Pie_d', JSON.parse(res))
 
     #pie chart - AR
-    #uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/AR/' + session[:user])
-    #res = Net::HTTP.get(uri)
-    #all_charts.store('Pie_ar', JSON.parse(res))
+    uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/AR/' + session[:user])
+    res = Net::HTTP.get(uri)
+    all_charts.store('Pie_ar', JSON.parse(res))
 
     @all_charts = all_charts.to_json
     puts "@all_charts"
