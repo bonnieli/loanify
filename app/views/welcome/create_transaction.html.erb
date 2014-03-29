@@ -3,6 +3,7 @@
 <form id="create_transaction" action="/welcome/post_transaction" method="post">
 	Name: <input class="typeahead" type="text" name="Name" placeholder="Search for people" ><br>
 	<input type="hidden" name="BorrowerKey">
+	<input type="hidden" name="B_Picture">
 	Amount: <input type="text" name="Amount"><br>
 	Today's Date: <input type="text" name="Date" class="datepicker" data-date-picker="dd-mm-yyyy"><br>
 	Description: <input type="textbox" name="Description"><br>
@@ -39,7 +40,7 @@
 	      if (substrRegex.test(str.Name)) {
 	        // the typeahead jQuery plugin expects suggestions to a
 	        // JavaScript object, refer to typeahead docs for more info
-	        matches.push({ value: str, name: str.Name, id: str.ID});
+	        matches.push({ value: str, name: str.Name, id: str.ID, profile_picture: str.Profile_Picture});
 	      }
 	    });
 	 
@@ -60,5 +61,6 @@
 	  source: substringMatcher(all_users)
 	}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
 		document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;
+		document.getElementById("create_transaction").elements["B_Picture"].value = suggestion.profile_picture;
 	});
 </script>
