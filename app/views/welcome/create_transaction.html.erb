@@ -6,13 +6,7 @@
 	<input type="hidden" name="BorrowerKey">
 	<input type="hidden" name="B_Picture">
 	<input type="text" name="Amount" placeholder="Amount" id="Amount">
-	<select name="Currency_Name">
-	  <% if @all_currencies %>
-	  	<% @all_currencies.each do |c| %>
-	  		<option value="<%= c %>"><%= c %></option>
-	  	<% end %>
-		<% end %>
-	</select>
+
 	<input type="text" name="Date" class="datepicker" data-date-format="dd-mm-yyyy" placeholder="Date">
 	<input type="textbox" name="Description" placeholder="Description">
 	<input type="submit" value="Submit" id="submit">
