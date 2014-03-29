@@ -1,17 +1,20 @@
 body {
-  background: #ffffff;
+  background: #0f0f0f url('http://i.imgur.com/eEqaaMv.jpg') fixed;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 10pt;
   margin: 0;
-  padding: 0;
+  padding: 10px;
+}
+body .container {
+  background: rgba(255, 255, 255, 0.44);
+  padding: 5px;
 }
 body #header {
-  background: #00a67c;
   color: #ffffff;
   text-align: center;
   padding: 10px 0;
-  font-size: 16pt;
+  font-size: 12pt;
   letter-spacing: 3px;
 }
 body .greeting {
@@ -27,10 +30,10 @@ body #uoi_button {
   display: block;
   padding: 20px;
   text-decoration: none;
-  color: #1f7c65;
+  color: #ffffff;
   font-weight: bold;
   text-align: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ffffff;
 }
 body #create_transaction:hover,
 body #iou_button:hover,
@@ -38,8 +41,8 @@ body #uoi_button:hover,
 body #create_transaction:active,
 body #iou_button:active,
 body #uoi_button:active {
-  background: #35d2ab;
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.5);
+  color: #000000;
 }
 body .transaction {
   background: #5fd2b5;
@@ -51,28 +54,33 @@ body .transaction .description {
   margin-top: 5px;
 }
 body .tabs {
-  height: 46px;
+  color: #fff;
+  font-size: 8pt;
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 0;
+  height: 23px;
 }
 body .tabs a {
-  color: #ffffff;
-  text-decoration: none;
-}
-body .tabs .paidback,
-body .tabs .reject,
-body .tabs .delete {
   float: left;
-  width: 50%;
-  padding: 15px 0;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  list-style-type: none;
+  width: 25%;
   text-align: center;
+  margin: 0;
+  padding: 5px 0;
+  border-right: 1px solid #fff;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
-body .tabs .paidback.no,
-body .tabs .reject.yes {
-  background: #cccccc;
+body .tabs a:last-child {
+  border-right: 0;
 }
-body .tabs .paidback.yes {
-  background: #00a67c;
-}
-body .tabs .delete,
-body .tabs .reject {
-  background: #ff0000;
+body .tabs .active {
+  background-color: rgba(216, 216, 216, 0.59);
+  color: #000;
 }
