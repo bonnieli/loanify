@@ -157,24 +157,33 @@ class WelcomeController < ApplicationController
   end
 
   def profile
-    @all_charts = {}
+    #all_charts = {}
 
     #bubble graph
     #profile_info = {'graphtype' => 'History', 'split' => 'AR', 'id' => session[:user]}
 
     #line chart - Debt
-    uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/Debt/' + session[:user])
-    res = Net::HTTP.get(uri)
-    unless res == '[]'
-      @all_charts.store('DebtLevel_d', res)
-    end
+    #uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/Debt/' + session[:user])
+    #res = Net::HTTP.get(uri)
+    #all_charts.store('DebtLevel_d', JSON.parse(res))
+
     #line chart - AR
     uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/AR/' + session[:user])
     res = Net::HTTP.get(uri)
-    unless res == '[]'
-      @all_charts.store('DebtLevel_ar', res)
-    end
+    all_charts.store('DebtLevel_ar', JSON.parse(res))
+    @all_charts = res
 
+    #pie chart - Debt
+    #uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/Debt/' + session[:user])
+    #res = Net::HTTP.get(uri)
+    #all_charts.store('Pie_d', JSON.parse(res))
+
+    #pie chart - AR
+    #uri = URI('http://iou.azurewebsites.net/api/values/Pie/spaceholder/AR/' + session[:user])
+    #res = Net::HTTP.get(uri)
+    #all_charts.store('Pie_ar', JSON.parse(res))
+
+    #@all_charts = all_charts.to_json
     puts "@all_charts"
     puts @all_charts
   end

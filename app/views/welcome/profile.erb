@@ -8,7 +8,7 @@
 <script>
   var raw_all_charts = <%= raw CGI.unescapeHTML(@all_charts) %>;
 
-  //Debt Level History -- Line Chart
+  //Balance History -- Line Chart
   var dp_BalanceHistory = function(datas) {
     var dataPoints = [];
     $.each(datas, function(i, data) {
@@ -28,16 +28,16 @@
               type: "line",
               xValueType: "dateTime",
               xValueFormatString: "MM/DD",
-              dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_d)
-            },
-            {
-              type: "line",
-              xValueType: "dateTime",
-              xValueFormatString: "MM/DD",
-              dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_ar)
-            }
+              dataPoints: dp_BalanceHistory(raw_all_charts)
+            }//,
+            //{
+            //  type: "line",
+            //  xValueType: "dateTime",
+            //  xValueFormatString: "MM/DD",
+            //  dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_ar)
+            //}
       ]
     });
-    c_BalanceHistory.render();
+  c_BalanceHistory.render();
 
 </script>
