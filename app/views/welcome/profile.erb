@@ -4,6 +4,8 @@
 <%= javascript_include_tag "excanvas", "data-turbolinks-track" => true %>
 
 <div id="BalanceHistory" style="height: 260px; width: 100%;"></div>
+<div id="CurrentOutstanding_d" style="height: 260px; width: 100%;"></div>
+<div id="CurrentOutstanding_ar" style="height: 260px; width: 100%;"></div>
 
 <script>
   var raw_all_charts = <%= raw CGI.unescapeHTML(@all_charts) %>;
@@ -20,24 +22,66 @@
   var c_BalanceHistory = new CanvasJS.Chart("BalanceHistory",
     {
       title:{text: "Account Balance History"},
-      axisX: {valueFormatString: "MM/DD",
+      axisX: {
+              title: "Date",
+              valueFormatString: "MM/DD",
               interval:1,
               intervalType: "day"},
-      axisY:{includeZero: true},
+      axisY:{
+              title: "Amount",
+              includeZero: true},
+      legend:{
+              verticalAlign: "bottom",
+              horizontalAlign: "center"},
       data: [{
               type: "line",
+              legendText: "IOU",
               xValueType: "dateTime",
               xValueFormatString: "MM/DD",
+              showInLegend: true,
               dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_d)
             },
             {
               type: "line",
+              legendText: "UOI",
               xValueType: "dateTime",
               xValueFormatString: "MM/DD",
+              showInLegend: true,
               dataPoints: dp_BalanceHistory(raw_all_charts.DebtLevel_ar)
             }
       ]
     });
   c_BalanceHistory.render();
+
+  //Current Outstanding Debt & AR -- Pie Chart
+  var dp_CurrentOutstanding = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ y: data.Amount, indexLabel: data.First_Name + ' ' + data.Last_Name});
+    });
+    return dataPoints;
+  };
+  
+  var c_CurrentOutstanding_d = new CanvasJS.Chart("CurrentOutstanding_d",
+    {
+      title:{text: "Current Balance IOU"},
+      data: [{
+              type: "pie",
+              dataPoints: dp_CurrentOutstanding(raw_all_charts.Pie_d)
+            }
+      ]
+    });
+  c_CurrentOutstanding_d.render();
+
+  var c_CurrentOutstanding_ar = new CanvasJS.Chart("CurrentOutstanding_ar",
+    {
+      title:{text: "Current Balance UOI"},
+      data: [{
+              type: "pie",
+              dataPoints: dp_CurrentOutstanding(raw_all_charts.Pie_ar)
+            }
+      ]
+    });
+  c_CurrentOutstanding_ar.render();
 
 </script>
