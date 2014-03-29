@@ -2,10 +2,10 @@
 <div id="Stats" align="center" style="display:inline-block; background-color:white; width:100%">
 </div>
 
-<div id="BalanceHistory" style="height: 260px; width: 100%;"></div>
-<div id="CurrentOutstanding_d" style="height: 260px; width: 100%;"></div>
-<div id="CurrentOutstanding_ar" style="height: 260px; width: 100%;"></div>
-<div id="History_d" style="height: 260px; width: 100%;"></div>
+<div id="BalanceHistory" style="pointer-events:none; height: 260px; width: 100%;"></div>
+<div id="CurrentOutstanding_d" style="pointer-events:none; height: 260px; width: 100%;"></div>
+<div id="CurrentOutstanding_ar" style="pointer-events:none; height: 260px; width: 100%;"></div>
+<div id="History_d" style="pointer-events:none; height: 260px; width: 100%;"></div>
 
 <%= javascript_include_tag "canvasjs", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "canvasjs.min", "data-turbolinks-track" => true %>
@@ -44,10 +44,6 @@
               fontSize: 15,
               verticalAlign: "bottom",
               horizontalAlign: "center"},
-      toolTip:{
-        enabled: false,       //disable here
-        animationEnabled: false //disable here
-      },
       data: [{
               type: "line",
               legendText: "IOU",
@@ -80,10 +76,6 @@
   var c_CurrentOutstanding_d = new CanvasJS.Chart("CurrentOutstanding_d",
     {
       title:{text: "Current Balance IOU"},
-      toolTip:{
-        enabled: false,       //disable here
-        animationEnabled: false //disable here
-      },
       data: [{
               type: "pie",
               dataPoints: dp_CurrentOutstanding(raw_all_charts.Pie_d)
@@ -95,10 +87,6 @@
   var c_CurrentOutstanding_ar = new CanvasJS.Chart("CurrentOutstanding_ar",
     {
       title:{text: "Current Balance UOI"},
-      toolTip:{
-        enabled: false,       //disable here
-        animationEnabled: false //disable here
-      },
       data: [{
               type: "pie",
               dataPoints: dp_CurrentOutstanding(raw_all_charts.Pie_ar)
@@ -130,10 +118,6 @@
       axisY:{
               title: "Paidback Time" 
               },
-      toolTip:{
-        enabled: false,       //disable here
-        animationEnabled: false //disable here
-      },
       legend:{
               fontSize: 15,
               verticalAlign: "bottom",
