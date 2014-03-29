@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     puts res.body
     @user =  JSON.parse(res.body)["ID"] # should return user ID
     puts @user
-    session[:user] = @user 
+    session[:user] = @user.to_s
 
     session[:user_first_name] = auth_hash['extra']['raw_info']['first_name']
     session[:user_last_name] = auth_hash['extra']['raw_info']['last_name']
