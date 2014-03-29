@@ -12,6 +12,9 @@
     <div id="details">
       <b><%= @info["First_Name_L"] %> <%= @info["Last_Name_L"] %></b> has requested that you owe him/her <%= sprintf('%.2f', @info["Amount"]) %> on <%= @info["Date"].strftime("%m/%d/%Y") %> ! 
     </div>
+    <div id="description">
+    	<%= @info["Description"] %>
+    </div>
     <div id="reject">
     	If you believe that this transaction was not meant to be yours, please reject it through the app. 
     </div>

@@ -68,12 +68,13 @@ class WelcomeController < ApplicationController
 
   def paidback
     uri = URI('http://iou.azurewebsites.net/api/values/')
-    puts params
     transaction_info = {'Type' => 'paidback', 
                         'ID' => params[:id],
                         'DatePaidBack' => Time.parse(params[:d])}
     res = Net::HTTP.post_form(uri,  transaction_info)
-    puts transaction_info
+
+    puts res.body
+    UserMailer.paidback(CGI.unescapeHTML(JSON.parse(res.body)["Email"])).deliver
 
     redirect_to welcome_uoi_url
   end
@@ -83,7 +84,8 @@ class WelcomeController < ApplicationController
     transaction_info = {'Type' => 'reject', 
                         'ID' => params[:id]}
     res = Net::HTTP.post_form(uri,  transaction_info)
-
+    puts res.body
+    UserMailer.rejected(CGI.unescapeHTML(JSON.parse(res.body)["Email"])).deliver
     redirect_to welcome_iou_url
   end
 

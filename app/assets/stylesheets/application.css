@@ -1,5 +1,11 @@
+@media only screen and (min-device-width: 480px) {
+  .container {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
 body {
-  background: #0f0f0f url('http://i.imgur.com/eEqaaMv.jpg') fixed;
+  background: #0f0f0f url('http://i.imgur.com/q4ubsQi.jpg') fixed;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 10pt;
@@ -7,8 +13,11 @@ body {
   padding: 10px;
 }
 body .container {
-  background: rgba(255, 255, 255, 0.44);
+  background: rgba(255, 255, 255, 0.2);
   padding: 5px;
+}
+body .container #loanify {
+  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
 }
 body #header {
   color: #ffffff;
@@ -18,7 +27,6 @@ body #header {
   letter-spacing: 3px;
 }
 body .greeting {
-  background: #1f7c65;
   color: #ffffff;
   padding: 10px;
   text-transform: uppercase;
