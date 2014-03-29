@@ -93,4 +93,7 @@ class WelcomeController < ApplicationController
   		@transactions = JSON.parse(res)
   	end
   end
+
+  def profile
+  end
 end

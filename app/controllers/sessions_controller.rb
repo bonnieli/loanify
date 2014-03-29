@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 								'Last_Name' => auth_hash['extra']['raw_info']['last_name'],
 								'Picture' => auth_hash['info']['image'],
 								'Type' => "user"}
+
     res = Net::HTTP.post_form(uri, 	fb_info)
     @user =  res.body # should return user ID
     session[:user] = @user 
