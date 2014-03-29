@@ -2,11 +2,10 @@
 
 <div class="tabs">
   <a href="/welcome/uoi" <% if @status == "all" %>class="active"<% end %>>All</a>
-  <a href="/welcome/uoi/unpaid" <% if @status == "all" %>class="unpaid"<% end %>>Unpaid</a>
-  <a href="/welcome/uoi/paid" <% if @status == "all" %>class="paid"<% end %>>Paid</a>
+  <a href="/welcome/uoi/unpaid" <% if @status == "unpaid" %>class="unpaid"<% end %>>Unpaid</a>
+  <a href="/welcome/uoi/paid" <% if @status == "paid" %>class="paid"<% end %>>Paid</a>
   <a href="/welcome/uoi/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
-</div>
-			
+</div>			
 
 <% if @transactions %>
 	<% @transactions.each do |t| %>
@@ -14,7 +13,14 @@
 			<div class="transaction_box <% if t["Reject"] %> red <% elsif t["Paidback"] %> green <% end %>">
 				<img src="<%= t['BPicture'] %>" class="transaction_pic" />
 				<div class="transaction_details">
-					<b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b> owes you
+					<b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b>
+					<% if t["Reject"] %>
+						rejected
+					<% elsif t["Paidback"] %>
+						paid back
+					<% else %>
+						owes you
+					<% end %>
 					<div class="amount">
 						$<%= sprintf('%.2f', t["Amount"]) %>
 					</div>
@@ -95,7 +101,6 @@
 			  }
 			});
 		});
-
 
 			
 	});
