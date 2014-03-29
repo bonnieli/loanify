@@ -1,10 +1,5 @@
-<div id="Stat" style="display:inline-block; background-color:white; width:100%">
-  <h3 style="text-align:center;width:100%;">My Profile</h3>
-  <details id='stat_summary'>
-  <summary>Statistic</summary>
-  <p id="stat_paragraph"> </p>
-  </details>
-  </br>
+<h3 style="text-align:center;width:100%;">My Profile</h3>
+<div id="Stats" align="center" style="display:inline-block; background-color:white; width:100%">
 </div>
 
 <div id="BalanceHistory" style="height: 260px; width: 100%;"></div>
@@ -21,16 +16,8 @@
 
   $(document).ready(function () {
     var lst_stat = raw_all_charts.Stat
-    var str_stat = "";
-    str_stat = str_stat + "Average Paidback Time: " + lst_stat.Average_Paidback_Time  + "<br>";
-    str_stat = str_stat + "Total number of outstanding UOI: " + lst_stat.Outstanding_AR + "<br>";
-    str_stat = str_stat + "Total number of outstanding IOU: " + lst_stat.Outstanding_Debt + "<br>";
-    str_stat = str_stat + "UOI/IOU Ratio: " + lst_stat.Outstanding_Ratio;
-    str_stat = str_stat + "Total number of UOI rejected transactions: " + lst_stat.Transactions_Gotten_Rejected + "<br>";
-    str_stat = str_stat + "Total number of IOU rejected transaction: " + lst_stat.Transactions_Rejected + "<br>";
-    str_stat = str_stat + "Total number of paidback transaction: " + lst_stat.Transactions_PaidBack + "<br>";
-    $("#stat_summary").open=true;
-    $("#stat_paragraph").html(str_stat);
+    var str_stat = "<table style='border-spacing:10px'><tr><th colspan = '2'>Statistic Information</th></tr><tr><td>Average Paidback Time</td><td>" + lst_stat.Average_Paidback_Time + "</td></tr><tr><td>Total number of outstanding UOI</td><td>" + lst_stat.Outstanding_AR + "</td></tr><tr><td>Total number of outstanding IOU</td><td>" + lst_stat.Outstanding_Debt + "</td></tr><tr><td>UOI/IOU Ratio</td><td>" + lst_stat.Outstanding_Ratio + "</td></tr><tr><td>Total number of UOI rejected transactions</td><td>" + lst_stat.Transactions_Gotten_Rejected + "</td></tr><tr><td>Total number of UOI rejected transactions</td><td>" + lst_stat.Transactions_Rejected + "</td></tr><tr><td>Total number of paidback transaction</td><td>" + lst_stat.Transactions_PaidBack + "</td></tr></table></br>"
+    $("#Stats").html(str_stat);
   });
 
   //Balance History -- Line Chart
@@ -44,7 +31,7 @@
   
   var c_BalanceHistory = new CanvasJS.Chart("BalanceHistory",
     {
-      title:{text: "Account Balance History"},
+      title:{text: "7 Day Account Balance History"},
       axisX: {
               title: "Date",
               valueFormatString: "MM/DD",
@@ -57,6 +44,10 @@
               fontSize: 15,
               verticalAlign: "bottom",
               horizontalAlign: "center"},
+      toolTip:{
+        enabled: false,       //disable here
+        animationEnabled: false //disable here
+      },
       data: [{
               type: "line",
               legendText: "IOU",
@@ -89,6 +80,10 @@
   var c_CurrentOutstanding_d = new CanvasJS.Chart("CurrentOutstanding_d",
     {
       title:{text: "Current Balance IOU"},
+      toolTip:{
+        enabled: false,       //disable here
+        animationEnabled: false //disable here
+      },
       data: [{
               type: "pie",
               dataPoints: dp_CurrentOutstanding(raw_all_charts.Pie_d)
@@ -100,6 +95,10 @@
   var c_CurrentOutstanding_ar = new CanvasJS.Chart("CurrentOutstanding_ar",
     {
       title:{text: "Current Balance UOI"},
+      toolTip:{
+        enabled: false,       //disable here
+        animationEnabled: false //disable here
+      },
       data: [{
               type: "pie",
               dataPoints: dp_CurrentOutstanding(raw_all_charts.Pie_ar)
@@ -121,7 +120,7 @@
   
   var c_TransactionHistory = new CanvasJS.Chart("History_d",
     {
-      title:{text: "Completed UOI Transaction History"},
+      title:{text: "Completed IOU Transaction History"},
       axisX:{
               title: "Date",
               valueFormatString: "MM/DD",
@@ -129,8 +128,12 @@
               interval: 7,
       },
       axisY:{
-              title: "Payback Time" 
+              title: "Paidback Time" 
               },
+      toolTip:{
+        enabled: false,       //disable here
+        animationEnabled: false //disable here
+      },
       legend:{
               fontSize: 15,
               verticalAlign: "bottom",
