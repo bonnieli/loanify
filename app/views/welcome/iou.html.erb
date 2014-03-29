@@ -13,7 +13,14 @@
 			<div class="transaction_box <% if t["Reject"] %> red <% elsif t["Paidback"] %> green <% end %>">
 				<img src="<%= t['LPicture'] %>" class="transaction_pic" />
 				<div class="transaction_details">
-					You owe <b><%= t["First_Name_L"] + ' ' + t["Last_Name_L"] %></b>
+					<% if t["Reject"] %>
+						You rejected
+					<% elsif t["Paidback"] %>
+						You paid back
+					<% else %>
+						You owe
+					<% end %>
+					 <b><%= t["First_Name_L"] + ' ' + t["Last_Name_L"] %></b>
 					<div class="amount">
 						$<%= sprintf('%.2f', t["Amount"]) %>
 					</div>
