@@ -16,7 +16,7 @@
 
   $(document).ready(function () {
     var lst_stat = raw_all_charts.Stat
-    var str_stat = "<table style='border-spacing:10px'><tr><th colspan = '2'>Statistic Information</th></tr><tr><td>Average Paidback Time</td><td>" + lst_stat.Average_Paidback_Time + "</td></tr><tr><td>Total number of outstanding UOI</td><td>" + lst_stat.Outstanding_AR + "</td></tr><tr><td>Total number of outstanding IOU</td><td>" + lst_stat.Outstanding_Debt + "</td></tr><tr><td>UOI/IOU Ratio</td><td>" + lst_stat.Outstanding_Ratio + "</td></tr><tr><td>Total number of UOI rejected transactions</td><td>" + lst_stat.Transactions_Gotten_Rejected + "</td></tr><tr><td>Total number of UOI rejected transactions</td><td>" + lst_stat.Transactions_Rejected + "</td></tr><tr><td>Total number of paidback transaction</td><td>" + lst_stat.Transactions_PaidBack + "</td></tr></table></br>"
+    var str_stat = "<table style='border-spacing:10px'><tr><th colspan = '2'>Statistic Information</th></tr><tr><td>Average Paidback Time</td><td>" + lst_stat.Average_Paidback_Time + "</td></tr><tr><td>Total number of outstanding UOI</td><td>" + lst_stat.Outstanding_AR + "</td></tr><tr><td>Total number of outstanding IOU</td><td>" + lst_stat.Outstanding_Debt + "</td></tr><tr><td>UOI/IOU Ratio</td><td>" + lst_stat.Outstanding_Ratio + "</td></tr><tr><td>Total number of UOI rejected transactions</td><td>" + lst_stat.Transactions_Gotten_Rejected + "</td></tr><tr><td>Total number of IOU rejected transactions</td><td>" + lst_stat.Transactions_Rejected + "</td></tr><tr><td>Total number of paidback transaction</td><td>" + lst_stat.Transactions_PaidBack + "</td></tr></table></br>"
     $("#Stats").html(str_stat);
   });
 
