@@ -1,4 +1,11 @@
-
+<div id="Stat" style="display:inline-block; background-color:white; width:100%">
+  <h3 style="text-align:center;width:100%;">My Profile</h3>
+  <details id='stat_summary'>
+  <summary>Statistic</summary>
+  <p id="stat_paragraph"> </p>
+  </details>
+  </br>
+</div>
 
 <div id="BalanceHistory" style="height: 260px; width: 100%;"></div>
 <div id="CurrentOutstanding_d" style="height: 260px; width: 100%;"></div>
@@ -11,7 +18,21 @@
 
 <script>
   var raw_all_charts = <%= raw CGI.unescapeHTML(@all_charts) %>;
- 
+
+  $(document).ready(function () {
+    var lst_stat = raw_all_charts.Stat
+    var str_stat = "";
+    str_stat = str_stat + "Average Paidback Time: " + lst_stat.Average_Paidback_Time  + "<br>";
+    str_stat = str_stat + "Total number of outstanding UOI: " + lst_stat.Outstanding_AR + "<br>";
+    str_stat = str_stat + "Total number of outstanding IOU: " + lst_stat.Outstanding_Debt + "<br>";
+    str_stat = str_stat + "UOI/IOU Ratio: " + lst_stat.Outstanding_Ratio;
+    str_stat = str_stat + "Total number of UOI rejected transactions: " + lst_stat.Transactions_Gotten_Rejected + "<br>";
+    str_stat = str_stat + "Total number of IOU rejected transaction: " + lst_stat.Transactions_Rejected + "<br>";
+    str_stat = str_stat + "Total number of paidback transaction: " + lst_stat.Transactions_PaidBack + "<br>";
+    $("#stat_summary").open=true;
+    $("#stat_paragraph").html(str_stat);
+  });
+
   //Balance History -- Line Chart
   var dp_BalanceHistory = function(datas) {
     var dataPoints = [];
