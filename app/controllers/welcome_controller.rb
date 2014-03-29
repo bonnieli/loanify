@@ -168,6 +168,10 @@ class WelcomeController < ApplicationController
   def profile
     all_charts = {}
 
+    uri = URI('http://iou.azurewebsites.net/api/values/' + session[:user])
+    res = Net::HTTP.get(uri)
+    all_charts.store('Stat', JSON.parse(res))
+
     #line chart - Debt
     uri = URI('http://iou.azurewebsites.net/api/values/DebtLevel/spaceholder/Debt/' + session[:user])
     res = Net::HTTP.get(uri)
