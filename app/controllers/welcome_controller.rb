@@ -12,19 +12,16 @@ class WelcomeController < ApplicationController
   end
 
   def create_transaction
-    puts 'hihihihihihihi'
     uri = URI('http://iou.azurewebsites.net/api/values')
-    name = Net::HTTP.get(uri)
-    puts 'hi'
-    unless name == '[]'
-      @all_users = JSON.parse(name)
-      puts @all_users
-      puts 'test'
+    all_users = Net::HTTP.get(uri)
+    unless all_users == '[]'
+      @all_users = all_users
     end
   end
 
   def post_transaction
   	uri = URI('http://iou.azurewebsites.net/api/values')
+    puts "HIHIHi"
   	puts params
   	transaction_info = { 'First_Name_B' => params["First_Name"],
   												'Last_Name_B' => params["Last_Name"],

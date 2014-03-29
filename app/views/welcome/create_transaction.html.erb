@@ -1,15 +1,14 @@
 <%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
-<div id="the-basics">
-  <input class="typeahead" type="text" placeholder="States of USA">
-</div>
 
 <form action="/welcome/post_transaction" method="post">
-	Name: <input type="text" name="Name"><br>
-	Borrower Key: <input type="text" name="BorrowerKey"><br>
-  Amount: <input type="text" name="Amount"><br>
-  Today's Date: <input type="text" name="Date" class="datepicker" data-date-picker="dd-mm-yyyy"><br>
-  Description: <input type="textbox" name="Description"><br>
-  <input type="submit" value="Submit">
+	Name: <input class="typeahead" type="text" name="name" placeholder="Search for people"><br>
+	<param name="First_Name_B" value="Yo">
+	<param name="Last_Name_B" value="Lo">
+	<param name="BorrowerKey" value="10">
+	Amount: <input type="text" name="Amount"><br>
+	Today's Date: <input type="text" name="Date" class="datepicker" data-date-picker="dd-mm-yyyy"><br>
+	Description: <input type="textbox" name="Description"><br>
+	<input type="submit" value="Submit">
 </form>
 
 <p>
@@ -27,39 +26,39 @@
 	$(".datepicker").datepicker('hide');
 
 	var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substringRegex;
- 
-    // an array that will be populated with substring matches
-    matches = [];
- 
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
- 
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str.First_Name)) {
-        // the typeahead jQuery plugin expects suggestions to a
-        // JavaScript object, refer to typeahead docs for more info
-        matches.push({ value: str.name });
-      }
-    });
- 
-    cb(matches);
-  };
-};
- 
-var all_users = <%= @all_users%>;
+	  return function findMatches(q, cb) {
+	    var matches, substringRegex;
+	 
+	    // an array that will be populated with substring matches
+	    matches = [];
+	 
+	    // regex used to determine if a string contains the substring `q`
+	    substrRegex = new RegExp(q, 'i');
+	 
+	    // iterate through the pool of strings and for any string that
+	    // contains the substring `q`, add it to the `matches` array
+	    $.each(strs, function(i, str) {
+	      if (substrRegex.test(str.Name)) {
+	        // the typeahead jQuery plugin expects suggestions to a
+	        // JavaScript object, refer to typeahead docs for more info
+	        matches.push({ value: str.Name});
+	      }
+	    });
+	 
+	    cb(matches);
+	  };
+	};
+	 
+	var all_users = <%= raw CGI.unescapeHTML(@all_users) %>;
 
-$('#the-basics .typeahead').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'names',
-  displayKey: 'value',
-  source: substringMatcher(all_users)
-});
+	$(' .typeahead').typeahead({
+	  hint: true,
+	  highlight: true,
+	  minLength: 1
+	},
+	{
+	  name: 'all_users',
+	  displayKey: 'value',
+	  source: substringMatcher(all_users)
+	});
 </script>
