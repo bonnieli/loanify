@@ -30,7 +30,8 @@ body #create_transaction {
 body #create_transaction .twitter-typeahead {
   width: 100%;
 }
-body #create_transaction input {
+body #create_transaction input,
+body #create_transaction select {
   width: 100%;
   border: 0;
   padding: 10px;
@@ -40,6 +41,7 @@ body #create_transaction input {
 
   margin-top: 0;
   border-radius: 0;
+  -webkit-appearance: none;
 }
 body #create_transaction #submit {
   background-color: #3498db;
