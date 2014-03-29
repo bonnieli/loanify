@@ -21,10 +21,8 @@ class WelcomeController < ApplicationController
 
   def post_transaction
   	uri = URI('http://iou.azurewebsites.net/api/values')
-    puts "HIHIHi"
-  	puts params
-  	transaction_info = { 'First_Name_B' => params["First_Name"],
-  												'Last_Name_B' => params["Last_Name"],
+  	transaction_info = { 'First_Name_B' => params["Name"].split.at(0),
+  												'Last_Name_B' => params["Name"].split.at(1),
   												'First_Name_L' => session[:user_first_name],
   												'Last_Name_L' => session[:user_last_name],
   												'BorrowerKey' => params["BorrowerKey"].to_i,

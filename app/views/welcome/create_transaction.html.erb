@@ -1,10 +1,8 @@
 <%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
 
-<form action="/welcome/post_transaction" method="post">
-	Name: <input class="typeahead" type="text" name="name" placeholder="Search for people"><br>
-	<param name="First_Name_B" value="Yo">
-	<param name="Last_Name_B" value="Lo">
-	<param name="BorrowerKey" value="10">
+<form id="create_transaction" action="/welcome/post_transaction" method="post">
+	Name: <input class="typeahead" type="text" name="Name" placeholder="Search for people" ><br>
+	<input type="hidden" name="BorrowerKey">
 	Amount: <input type="text" name="Amount"><br>
 	Today's Date: <input type="text" name="Date" class="datepicker" data-date-picker="dd-mm-yyyy"><br>
 	Description: <input type="textbox" name="Description"><br>
@@ -41,7 +39,7 @@
 	      if (substrRegex.test(str.Name)) {
 	        // the typeahead jQuery plugin expects suggestions to a
 	        // JavaScript object, refer to typeahead docs for more info
-	        matches.push({ value: str.Name});
+	        matches.push({ value: str, name: str.Name, id: str.ID});
 	      }
 	    });
 	 
@@ -58,7 +56,9 @@
 	},
 	{
 	  name: 'all_users',
-	  displayKey: 'value',
+	  displayKey: 'name',
 	  source: substringMatcher(all_users)
+	}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
+		document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;
 	});
 </script>
