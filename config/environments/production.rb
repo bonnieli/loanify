@@ -73,6 +73,7 @@ IouApp::Application.configure do
     password: "AbC123$",
     enable_starttls_auto: false
   }
+  config.action_mailer.default_content_type = 'text/html'
   config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
