@@ -41,6 +41,8 @@ gem 'omniauth-facebook'
 ## For heroku (?)
 gem 'rails_12factor', group: :production
 
+gem "letter_opener", :group => :development
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
