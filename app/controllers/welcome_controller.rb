@@ -36,7 +36,6 @@ class WelcomeController < ApplicationController
   												'LenderKey' => session[:user].to_i,
   												'Amount' => params["Amount"].to_f,
                           'Currency_Name' => params["Currency_Name"],
-                          # 'Currency_Symbol' => params["Currency_Symbol"],
                           'Date' => Time.parse(params["Date"]),
   												'Description' => params["Description"],
   												'Type' => "transaction"
@@ -60,9 +59,12 @@ class WelcomeController < ApplicationController
 
   def paidback
     uri = URI('http://iou.azurewebsites.net/api/values/')
+    puts params
     transaction_info = {'Type' => 'paidback', 
-                        'ID' => params[:id]}
+                        'ID' => params[:id],
+                        'DatePaidBack' => Time.parse(params[:d])}
     res = Net::HTTP.post_form(uri,  transaction_info)
+    puts transaction_info
 
     redirect_to welcome_uoi_url
   end
@@ -77,6 +79,7 @@ class WelcomeController < ApplicationController
   end
 
   def iou
+    @status = "all"
   	uri = URI('http://iou.azurewebsites.net/api/values/Borrower/' + session[:user])
   	res = Net::HTTP.get(uri)
   	unless res == '[]'
@@ -84,12 +87,73 @@ class WelcomeController < ApplicationController
   	end
   end
 
+  def iou_rejected
+    @status = "rejected"
+    uri = URI('http://iou.azurewebsites.net/api/values/Borrower/Rejected/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :iou
+  end
+
+  def iou_paid
+    @status = "paid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Borrower/Paidback/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :iou
+  end
+
+  def iou_unpaid
+    @status = "unpaid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Borrower/Unpaid/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :iou
+  end
+
   def uoi
+    @status = "all"
   	uri = URI('http://iou.azurewebsites.net/api/values/Lender/' + session[:user])
   	res = Net::HTTP.get(uri)
   	unless res == '[]'
   		@transactions = JSON.parse(res)
   	end
+  end
+
+  def uoi_rejected
+    @status = "rejected"
+    uri = URI('http://iou.azurewebsites.net/api/values/Lender/Rejected/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :uoi
+  end
+
+  def uoi_paid
+    @status = "paid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Lender/Paidback/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :uoi
+  end
+
+  def uoi_unpaid
+    @status = "unpaid"
+    uri = URI('http://iou.azurewebsites.net/api/values/Lender/Unpaid/' + session[:user])
+    res = Net::HTTP.get(uri)
+    unless res == '[]'
+      @transactions = JSON.parse(res)
+    end
+    render :uoi
   end
 
   def profile
