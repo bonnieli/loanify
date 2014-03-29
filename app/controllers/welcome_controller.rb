@@ -43,7 +43,12 @@ class WelcomeController < ApplicationController
 
   	puts transaction_info
   	res = Net::HTTP.post_form(uri, 	transaction_info)
+    puts 'test test test'
   	puts res.body
+
+    @email_to = CGI.unescapeHTML(JSON.parse(res.body)["Email"])
+    puts @email_to
+    UserMailer.new_transaction(@email)
 
   	redirect_to welcome_home_url
   end
