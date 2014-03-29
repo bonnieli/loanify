@@ -48,7 +48,7 @@ class WelcomeController < ApplicationController
 
     @email_to = CGI.unescapeHTML(JSON.parse(res.body)["Email"])
     puts @email_to
-    UserMailer.new_transaction(@email)
+    UserMailer.new_transaction(@email_to).deliver
 
   	redirect_to welcome_home_url
   end
