@@ -15,7 +15,7 @@
 				<div class="transaction_details">
 					You owe <b><%= t["First_Name_L"] + ' ' + t["Last_Name_L"] %></b>
 					<div class="amount">
-						<%= t["Currency_Symbol"] %><%= t["Amount"] %> (<%= t["Currency_Name"] %>)
+						$<%= sprintf('%.2f', t["Amount"]) %>
 					</div>
 					<a href="#" class="more_options"></a>
 				</div>
@@ -43,10 +43,6 @@
 <% else %>
 	You owe no one money!
 <% end %>
-
-<p>
-	<a href="/welcome/home">Go back home</a>
-</p>
 
 <%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
 <script>vex.defaultOptions.className = 'vex-theme-os';</script>

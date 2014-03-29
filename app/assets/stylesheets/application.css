@@ -24,6 +24,16 @@ body .greeting {
   text-transform: uppercase;
   text-align: center;
 }
+body #log_out,
+body #go_home {
+  display: block;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 5px 0;
+}
 body #create_transaction {
   width: 100%;
 }

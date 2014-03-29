@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have a new transaction from Loanify!</h1>
+    <div id="greetings">
+    	<img src="<%= @info["LPicture"] %> "><br />
+    	Hi, <%= @info["First_Name_B"] %> <%= @info["Last_Name_B"] %>!
+    </div>
+    <div id="details">
+      <b><%= @info["First_Name_L"] %> <%= @info["Last_Name_L"] %></b> has requested that you owe him/her <%= sprintf('%.2f', @info["Amount"]) %> on <%= @info["Date"].strftime("%m/%d/%Y") %> ! 
+    </div>
+    <div id="reject">
+    	If you believe that this transaction was not meant to be yours, please reject it through the app. 
+    </div>
+  </body>
+</html>

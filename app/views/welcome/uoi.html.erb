@@ -16,7 +16,7 @@
 				<div class="transaction_details">
 					<b><%= t["First_Name_B"] + ' ' + t["Last_Name_B"] %></b> owes you
 					<div class="amount">
-						<%= t["Currency_Symbol"] %><%= t["Amount"] %> (<%= t["Currency_Name"] %>)
+						$<%= sprintf('%.2f', t["Amount"]) %>
 					</div>
 					<a href="#" class="more_options"></a>
 				</div>
@@ -46,9 +46,6 @@
 	No one owes you money
 <% end %>
 
-<p>
-	<a href="/welcome/home">Go back home</a>
-</p>
 
 <%= javascript_include_tag "bootstrap-datepicker", "data-turbolinks-track" => true %>
 

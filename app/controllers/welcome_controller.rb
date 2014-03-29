@@ -4,6 +4,11 @@ class WelcomeController < ApplicationController
 	skip_before_filter :verify_authenticity_token
 
   def index
+    session[:email_check] = false
+    session[:user] = nil
+    session[:user_first_name] = nil
+    session[:user_last_name] = nil
+    session[:user_pic] = nil
     render :layout => false
   end
 
@@ -35,7 +40,6 @@ class WelcomeController < ApplicationController
                           'LPicture' => session[:user_pic],
   												'LenderKey' => session[:user].to_i,
   												'Amount' => params["Amount"].to_f,
-                          'Currency_Name' => params["Currency_Name"],
                           'Date' => Time.parse(params["Date"]),
   												'Description' => params["Description"],
   												'Type' => "transaction"
@@ -48,7 +52,7 @@ class WelcomeController < ApplicationController
 
     @email_to = CGI.unescapeHTML(JSON.parse(res.body)["Email"])
     puts @email_to
-    UserMailer.new_transaction(@email)
+    UserMailer.new_transaction(@email_to, transaction_info).deliver
 
   	redirect_to welcome_home_url
   end
