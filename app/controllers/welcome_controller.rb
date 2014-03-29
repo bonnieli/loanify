@@ -16,6 +16,7 @@ class WelcomeController < ApplicationController
     all_users = Net::HTTP.get(uri)
     unless all_users == '[]'
       @all_users = all_users
+      puts all_users
     end
   end
 
