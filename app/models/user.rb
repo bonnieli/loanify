@@ -1,4 +1,4 @@
-class users < ActiveRecord::Base
+class User < ActiveRecord::Base
 	#add an user
 	def add(input)
 		user = Users.new
