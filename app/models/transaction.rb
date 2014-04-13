@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-	def hello
-
+	def hello(x)
+		return x
 	end
 end
