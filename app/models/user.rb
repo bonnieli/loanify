@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 		user.fb_uniqueid = input["fb_uniqueid"]
 		user.token = input["token"]
 		user.expired = false
-		user.email_address = input["email_address"]
+		user.save
 		return user
 	end
 end
