@@ -46,28 +46,28 @@ class Transaction < ActiveRecord::Base
 
 #split for borrowers
 	def self.borrower_paidback(input)
-		return Transaction.where({id_b: input["id"], paidback: true})
+		return (Transaction.where({id_b: input["id"], paidback: true})).to_json
 	end
 
 	def self.borrower_rejected(input)
-		return Transaction.where({id_b: input["id"], rejected: true})
+		return (Transaction.where({id_b: input["id"], rejected: true})).to_json
 	end
 
 	def self.borrower_unpaid(input)
-		return Transaction.where({id_b: input["id"], paidback: false, reject: false})
+		return (Transaction.where({id_b: input["id"], paidback: false, reject: false})).to_json
 	end
 
 #split for lenders
 	def self.lender_paidback(input)
-		return Transaction.where({id_l: input["id"], paidback: true})
+		return (Transaction.where({id_l: input["id"], paidback: true})).to_json
 	end
 
 	def self.lender_rejected(input)
-		return Transaction.where({id_l: input["id"], rejected: true})
+		return (Transaction.where({id_l: input["id"], rejected: true})).to_json
 	end
 
 	def self.lender_unpaid(input)
-		return Transaction.where({id_l: input["id"], paidback: false, reject: false})
+		return (Transaction.where({id_l: input["id"], paidback: false, reject: false})).to_json
 	end
 
 #graphs
