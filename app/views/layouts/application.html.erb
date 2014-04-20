@@ -14,10 +14,16 @@
 		<div id="header">
 			<div id="loanify">loanify</div>
 		</div>
+		<% if notice %>
+			<p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+			<p class="alert alert-danger"><%= alert %></p>
+		<% end %>
 		<%= yield %>
 
-		<a href="/welcome/home" id="go_home">Go back home</a>
-		<a href="/" id="log_out">Log Out</a>
+		<a href="/home" id="go_home">Go back home</a>
+		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 	</div>
 
 </body>

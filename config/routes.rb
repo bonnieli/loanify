@@ -1,15 +1,18 @@
 IouApp::Application.routes.draw do
-  get "welcome/index"
-
   ## SET ROOT
-  root "welcome#index"
+  # root "application#index"
+  root "welcome#home"
 
-  get '/auth/:provider/callback', to: 'sessions#create'
-  post '/welcome/post_transaction', to: 'welcome#post_transaction'
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  # get '/auth/:provider/callback', to: 'sessions#create'
+  get '/home', to: 'welcome#home'
 
-  get '/welcome/home'
+  # Create Transactions
+  get '/transaction/create', to: 'transaction#create'
+  post '/transaction/post', to: 'transaction#post'
+
   get '/welcome/home/:email', to: 'welcome#email'
-  get '/welcome/create_transaction', to: 'welcome#create_transaction'
+
   get '/welcome/delete_transaction/:id', to: 'welcome#delete_transaction'
   get '/welcome/iou'
   get '/welcome/iou/rejected', to: 'welcome#iou_rejected'

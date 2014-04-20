@@ -7,6 +7,8 @@ gem 'pg'
 
 gem 'certified'
 
+gem 'devise'
+
 # Use sqlite3 as the database for Active Record
 gem 'pg', group: :production
 gem 'sqlite3', group: :development
@@ -41,6 +43,7 @@ end
 ## For log in / sign up
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'oauth2'
 
 ## For heroku (?)
 gem 'rails_12factor', group: :production
