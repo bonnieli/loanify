@@ -66,11 +66,11 @@ IouApp::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.1and1.com",
-    port: 25,
-    authentication: "plain",
-    user_name: "loanify@swaggerloo.ca",
-    password: "AbC123$",
+    address: ENV['MAIL_ADDRESS'],
+    port: ENV['MAIL_PORT'],
+    authentication: ENV['MAIL_AUTHENTICATION'],
+    user_name: ENV['MAIL_USER_NAME'],
+    password: ENV['MAIL_PSWD'],
     enable_starttls_auto: false
   }
   
