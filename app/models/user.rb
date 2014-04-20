@@ -9,33 +9,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def apply_omniauth(auth)
+    #things stored in User
   	self.email_address = auth['extra']['raw_info']['email']
   	self.first_name = auth['extra']['raw_info']['first_name']
   	self.last_name = auth['extra']['raw_info']['last_name']
   	self.profile_picture = auth['info']['image']
+    #link an Authentication model
   	authentications.build(:provider => auth['provider'],
   												:uid => auth['uid'],
   												:token => auth['credentials']['token'])
-  end
-
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    if user
-      return user
-    else
-      registered_user = User.where(:email => auth.info.email).first
-      if registered_user
-        return registered_user
-      else
-        user = User.create(name:auth.extra.raw_info.name,
-                            provider:auth.provider,
-                            uid:auth.uid,
-                            email:auth.info.email,
-                            password:Devise.friendly_token[0,20]
-                          )
-      end
-       
-    end
   end
 
 	#add an user
