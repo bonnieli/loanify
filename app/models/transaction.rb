@@ -71,12 +71,22 @@ class Transaction < ActiveRecord::Base
 	end
 
 #graphs
+
+#HISTORY GRAPH
 	def self.historygraph(input)
 
 	end
 
-	def self.piechart(input)
-	
+
+#PIE CHARTS
+	def self.borrower_piechart(input) #input needs to be ID, check all IOUs
+		result = Transaction.find_by_sql("Select id_l, SUM(amount) as amount FROM Transactions WHERE id_b = ? GROUP BY id_l", input)
+		return result.to_json
+	end
+
+	def self.lender_piechart(input) #input needs to be ID, check all UOIs
+		result = Transaction.find_by_sql("Select id_b, SUM(amount) as amount FROM Transactions WHERE id_l = ? GROUP BY id_b", input)
+		return result.to_json
 	end
 
 end
