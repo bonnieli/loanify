@@ -2,6 +2,7 @@
 @media only screen and (min-device-width: 480px) {
   .container {
     margin: 0 auto;
+    margin-top: 70px;
   }
 }
 body {

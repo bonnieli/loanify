@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 		return user
 	end
 
-	def self.allusers(input)
-		return Users.select("id, email_address, first_name, last_name, profile_picture")
+	def self.allusers
+		return User.select("id, email_address, first_name, last_name, profile_picture")
 	end
 end

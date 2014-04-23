@@ -41,10 +41,10 @@
 	    // iterate through the pool of strings and for any string that
 	    // contains the substring `q`, add it to the `matches` array
 	    $.each(strs, function(i, str) {
-	      if (substrRegex.test(str.Name)) {
+	      if (substrRegex.test(str.first_name + ' ' + str.last_name)) {
 	        // the typeahead jQuery plugin expects suggestions to a
 	        // JavaScript object, refer to typeahead docs for more info
-	        matches.push({ value: str, name: str.Name, id: str.ID, profile_picture: str.Profile_Picture});
+	        matches.push({ value: str, name: str.first_name + ' ' + str.last_name, id: str.id, profile_picture: str.profile_picture, email_address: str.email_address});
 	      }
 	    });
 	 
@@ -66,7 +66,7 @@
 	}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
 		document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;
 		document.getElementById("create_transaction").elements["B_Picture"].value = suggestion.profile_picture;
-		document.getElementById("create_transaction").elements["BorrowerEmail"].value = suggestion.Email;
+		document.getElementById("create_transaction").elements["BorrowerEmail"].value = suggestion.email_address;
 	});
 
 	$("#Amount").on("keyup", function(){
