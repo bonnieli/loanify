@@ -15,4 +15,4 @@
 /log/*.log
 /tmp
 
-#/config/initializers/01_development_env.rb
+/config/initializers/01_development_env.rb
