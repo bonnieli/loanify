@@ -42,7 +42,8 @@
 					<% end %>
 					- Requested on <%= Date.parse(t.transaction_date.to_s).strftime("%d-%m-%Y") %>
 					<% unless t.reject or t.paidback %>
-						<a href="#" data-id=<%= t.id %> class="reject_button reject-confirm" >Reject</a>
+						<div class="pb-container"><input type="text" data-date=<%= t['Date'] %> data-id=<%= t['ID'] %> class="pb-date" data-date-format="dd-mm-yyyy" placeholder="Paidback Date"></div>
+						<a href="#" data-id=<%= t['ID'] %> class="reject_button delete-confirm" >Delete</a>
 					<% end %>
 				</div>
 			</div>

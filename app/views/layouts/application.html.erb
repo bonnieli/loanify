@@ -26,20 +26,15 @@
 		</header>
 		<nav class="slide">
 			<ul>
-				<li><a href="../trunk.html" class="active">HOME</a></li>
-				<li><a href="#">LINK TWO</a></li>
-				<li><a href="#">LINK THREE</a></li>
-				<li><a href="#">LINK FOUR</a></li>
-				<li><a href="#">LINK FIVE</a></li>
-				<li><a href="#">LINK SIX</a></li>
-				<li><a href="#">LINK SEVEN</a></li>
+				<li><a href="/welcome/profile" class="active">Profile</a></li>
+				<li><a href="/transaction/create">Create Transaction</a></li>
+				<li><a href="/iou">People whom I owe money to</a></li>
+				<li><a href="/uoi">People who owe me money</a></li>
+				<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 			</ul>
 		</nav>
 
 		<div class="content slide">
-			<div id="header">
-				<div id="loanify">loanify</div>
-			</div>
 			<% if notice %>
 				<p class="alert alert-success"><%= notice %></p>
 			<% end %>
@@ -48,8 +43,6 @@
 			<% end %>
 			<%= yield %>
 
-			<a href="/home" id="go_home">Go back home</a>
-			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 		</div>
 	</div>
 

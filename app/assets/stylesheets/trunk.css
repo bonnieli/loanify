@@ -41,6 +41,9 @@ header h1 {
 	line-height: 60px;
 	font-weight: bold;
 	padding-left: 20px;
+	font: 100 3em/1.5em 'Lato';
+    font: Ultra-Light 100 3em/1.5em 'Lato';
+    font: Ultra-Light 100 3em/1.5em 'Lato', sans-serif;
 }
 
 .burger {
@@ -115,7 +118,7 @@ nav li a:hover {color: #000;}
 header {
 	height: 60px;
 	z-index: 2;
-	background-color: #060a0c;
+	background-color: #2995BE;
 	
 	position: fixed;
 	top: 0;

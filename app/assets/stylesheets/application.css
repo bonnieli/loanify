@@ -2,7 +2,6 @@
 @media only screen and (min-device-width: 480px) {
   .container {
     margin: 0 auto;
-    margin-top: 70px;
   }
 }
 body {
@@ -16,17 +15,8 @@ body {
 body .container {
   background: #333944;
 }
-body #header {
-  text-align: center;
-  background-color: #2995BE;
-}
-body #header #loanify {
-  color: #ffffff;
-  font: 100 1em/1.5em 'Lato';
-  font: Ultra-Light 100 1em/1.5em 'Lato';
-  font: Ultra-Light 100 1em/1.5em 'Lato', sans-serif;
-  font-size: 25pt;
-  letter-spacing: 0;
+body .container .content {
+  margin-top: 65px;
 }
 body .greeting {
   color: #ffffff;

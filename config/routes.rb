@@ -16,11 +16,9 @@ IouApp::Application.routes.draw do
   get '/welcome/home/:email', to: 'welcome#email'
 
   get '/welcome/delete_transaction/:id', to: 'welcome#delete_transaction'
-  get '/welcome/iou'
   get '/welcome/iou/rejected', to: 'welcome#iou_rejected'
   get '/welcome/iou/paid', to: 'welcome#iou_paid'
   get '/welcome/iou/unpaid', to: 'welcome#iou_unpaid'
-  get '/welcome/uoi'
   get '/welcome/uoi/rejected', to: 'welcome#uoi_rejected'
   get '/welcome/uoi/paid', to: 'welcome#uoi_paid'
   get '/welcome/uoi/unpaid', to: 'welcome#uoi_unpaid'
