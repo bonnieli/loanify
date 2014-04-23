@@ -2,6 +2,8 @@ class Transaction < ActiveRecord::Base
 	
 	def self.newtransaction(input) #new transaction
 		transaction = Transaction.new
+		transaction.transaction_date = input["transaction_date"]
+		transaction.description = input["description"]
 		transaction.paidback = false
 		transaction.reject = false
 		transaction.id_b = input["borrower_key"]
@@ -74,6 +76,18 @@ class Transaction < ActiveRecord::Base
 
 #HISTORY GRAPH
 	def self.historygraph(input)
+		result = []
+		start = Date.today - 7
+		for i in (0..7)
+			current = start + i
+			item = OpenStruct.new
+			item.amount = Transaction.where("id = ? AND reject = ? AND transaction_date <= ? AND 
+				(paidback = ? OR datepaidback > ?", params[:input], false, params[:current], false, params[:current]).
+				select(SUM(amount))
+			item.date = current
+			result.push(item)
+		end
+		return result
 
 	end
 
