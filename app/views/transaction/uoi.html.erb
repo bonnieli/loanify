@@ -1,0 +1,88 @@
+<div class="tabs">
+    <a href="/welcome/iou" <% if @status == "all" %>class="active"<% end %>>All</a>
+    <a href="/welcome/iou/unpaid" <% if @status == "unpaid" %>class="active"<% end %>>Unpaid</a>
+    <a href="/welcome/iou/paid" <% if @status == "paid" %>class="active"<% end %>>Paid</a>
+    <a href="/welcome/iou/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
+</div>
+			
+
+
+<% if @transactions %>
+	<% @transactions.each do |t| %>
+		<div class="transaction_container">
+			<% b = User.find(t.id_b) %>
+			<div class="transaction_box <% if t.reject %> red <% elsif t.paidback %> green <% end %>">
+				<img src="<%= b.profile_picture %>" class="transaction_pic" />
+				<div class="transaction_details">
+					<% if t.reject %>
+						You rejected
+					<% elsif t.paidback %>
+						You paid back
+					<% else %>
+						You owe
+					<% end %>
+					 <b><%= b.first_name + ' ' + b.last_name %></b>
+					<div class="amount">
+						$<%= sprintf('%.2f', t.amount) %>
+					</div>
+					<a href="#" class="more_options"></a>
+				</div>
+				<div class="options" style="display:none">
+					<div class="transaction_description">
+						<h1>Description</h1>
+						<%= t.description %>
+					</div>
+					<h1>Status</h1>
+					<% if t.paidback %>
+						Paidback on <%= Date.parse(t.date_paidback).strftime("%d-%m-%Y") %>
+					<% elsif t.reject %>
+						Rejected
+					<% else %>
+						Unpaid
+					<% end %>
+					- Requested on <%= Date.parse(t.transaction_date.to_s).strftime("%d-%m-%Y") %>
+					<% unless t.reject or t.paidback %>
+						<a href="#" data-id=<%= t.id %> class="reject_button reject-confirm" >Reject</a>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	You owe no one money!
+<% end %>
+
+<%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
+<script>vex.defaultOptions.className = 'vex-theme-os';</script>
+<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
+
+<script>
+	$(document).ready(function () {
+	    $(".transaction_details").click( function(e) {
+	    	e.preventDefault();
+	    	var arrow = $(this).children(".more_options");
+	        var box = $(this).siblings(".options");
+	        $(box).slideToggle(function () {
+	            if ($(box).is(":visible")) {
+	                $(arrow).css("background-image", "url(http://i.imgur.com/iqVwIpT.png)");
+	            } else {
+	                $(arrow).css("background-image", "url(http://i.imgur.com/xk7c9PB.png)");
+	            }
+	        });
+	    });
+
+	    $(".reject-confirm").click( function() {
+	    	var t = $(this);
+	    	vex.dialog.confirm({
+				message: 'Are you sure you want to reject this transaction?',
+				callback: function(value) {
+					if (value) {
+						window.location.replace("/welcome/reject/" + t.data("id"));
+					}
+				}
+			});
+	    })
+	
+	});
+</script>

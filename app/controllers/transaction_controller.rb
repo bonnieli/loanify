@@ -25,4 +25,12 @@ class TransactionController < ActionController::Base
     redirect_to home_url
   end
 
+  def iou
+    @transactions = Transaction.where(:id_b => current_user.id)
+  end
+
+  def uoi
+    @transactions = Transaction.where(:id_l => current_user.id)
+  end
+
 end
