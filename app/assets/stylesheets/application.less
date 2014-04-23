@@ -20,7 +20,6 @@
 
 
 body {
-	background: #333944;
     font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
     font-size: 10pt;
@@ -28,7 +27,6 @@ body {
     padding: 10px;
 
     .container {
-		background: #333944;
 		.content {
 			margin-top: 65px;
 		}
@@ -128,8 +126,8 @@ body {
 	}
 
 	.transaction_container {
-		border: 1px solid #fff;
-		margin-top: 10px;
+		background-color: @white;
+		margin: 10px 10px 0 10px;
 		.transaction_box.red {
 			border-left: 10px solid #c0392b;
 		}
@@ -167,32 +165,41 @@ body {
 			}
 			.options {
 			    padding: 10px;
-			    .transaction_description {
-				    padding: 10px 0; 
-				}
-				h1 {
-					font-size: 8pt;
-			    text-transform: uppercase;
-			    margin: 0 0 5px 0;
-			    color: #fff;
-				}
-				.reject_button, .paidback_button {
-				    display: block;
-				    text-align: center;
-				    background: #e74c3c;
-				    color: #fff;
-				    text-decoration: none;
-				    text-transform: uppercase;
-				    font-weight: bold;
-				    padding: 10px 0;
-				    margin: 10px 30px 0 30px;
-				}
+			    .details_table, th {
+			    	width: 100%;
+			    	border-left: 1px solid @grey;
+			    	border-right: 1px solid @grey;
+			    	tr {
+			    		border-top: 1px solid @grey;
+			    		td {
+			    			padding: 5px;
+			    			&:first-child {
+				    			width: 50%;
+				    			font-weight: bold;
+				    			padding-right: 10px;		    				
+			    			}
+			    		}
+			    		&:last-child {
+			    			border-bottom: 1px solid @grey;
+			    		}
+			    	}
+			    	.reject_button, .paidback_button, .delete {
+					    display: block;
+					    text-align: center;
+					    background: #e74c3c;
+					    color: #fff;
+					    text-decoration: none;
+					    text-transform: uppercase;
+					    font-weight: bold;
+					    padding: 10px 0;
+						}
+			    } /** end of .details_table **/
 				.pb-container {
-					margin: 10px 30px 0 30px;
 					.pb-date {
 						width: 100%;
 						padding: 10px;
 						-moz-box-sizing: border-box; 
+						border: 1px solid #ccc;
 				    -webkit-box-sizing: 
 				    border-box; box-sizing: border-box; 
 					}
@@ -200,7 +207,7 @@ body {
 				.paidback_button {
 					background: green;
 				}
-				.rejected {
+				.rejected, .delete {
 			    background: #ddd;
 				}
 			}

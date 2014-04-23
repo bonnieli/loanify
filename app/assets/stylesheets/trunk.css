@@ -1,6 +1,7 @@
 body {
 	font: 12px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-	color: #9aa6af;
+	color: #000;
+	background-color: #F1F2F3;
 	text-rendering: optimizelegibility;
 	
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
@@ -18,7 +19,6 @@ body {
 
 .container {
 	overflow: hidden;
-	background-color: #000;
 
 /*  Prevents Flickering  */
 	-webkit-backface-visibility: hidden;
@@ -32,6 +32,8 @@ body {
 header {
 	height: 60px;
 	position: relative;
+	/*background-image: url('/assets/poly_bg.png');*/
+	/*background-size: 100%;*/
 	background-color: #f3f5f6;
 }
 header h1 {
@@ -118,7 +120,7 @@ nav li a:hover {color: #000;}
 header {
 	height: 60px;
 	z-index: 2;
-	background-color: #2995BE;
+	background-color: #271940;
 	
 	position: fixed;
 	top: 0;
