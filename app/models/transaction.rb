@@ -81,25 +81,32 @@ class Transaction < ActiveRecord::Base
 		for i in (0..7)
 			current = start + i
 			item = OpenStruct.new
-			item.amount = Transaction.where("id = ? AND reject = ? AND transaction_date <= ? AND 
-				(paidback = ? OR datepaidback > ?", params[:input], false, params[:current], false, params[:current]).
-				select(SUM(amount))
+			item.l_amount = (Transaction.where("id_b = ? AND reject = ? AND transaction_date <= ? AND 
+				(paidback = ? OR date_paidback > ?)", input, false, current, false, current).pluck("SUM(amount) as amount"))[0]
+			item.b_amount = (Transaction.where("id_l = ? AND reject = ? AND transaction_date <= ? AND 
+				(paidback = ? OR date_paidback > ?)", input, false, current, false, current).pluck("SUM(amount) as amount"))[0]
+			if item.l_amount == nil
+				item.l_amount = 0
+			end
+			if item.b_amount == nil
+				item.b_amount = 0
+			end
 			item.date = current
 			result.push(item)
 		end
-		return result
+		return result.to_json
 
 	end
 
 
 #PIE CHARTS
 	def self.borrower_piechart(input) #input needs to be ID, check all IOUs
-		result = Transaction.find_by_sql("Select id_l, SUM(amount) as amount FROM Transactions WHERE id_b = ? GROUP BY id_l", input)
+		result = Transaction.find_by_sql("Select id_l, SUM(amount) as amount FROM Transactions WHERE id_b = '#{input}' GROUP BY id_l")
 		return result.to_json
 	end
 
 	def self.lender_piechart(input) #input needs to be ID, check all UOIs
-		result = Transaction.find_by_sql("Select id_b, SUM(amount) as amount FROM Transactions WHERE id_l = ? GROUP BY id_b", input)
+		result = Transaction.find_by_sql("Select id_b, SUM(amount) as amount FROM Transactions WHERE id_l = '#{input}' GROUP BY id_b")
 		return result.to_json
 	end
 

@@ -30,4 +30,10 @@ class User < ActiveRecord::Base
 	def self.allusers(input)
 		return Users.select("id, email_address, first_name, last_name, profile_picture")
 	end
+
+	def self.user_fullname(input)
+		user = User.find(input)
+		return (user.first_name + " " + user.last_name)
+	end
+
 end
