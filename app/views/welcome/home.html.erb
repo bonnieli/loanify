@@ -13,26 +13,26 @@
 <%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
 <%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
 <script>
-	$(document).ready( function() {
-		var check = <%= session[:email_check] %>;
-		if (!check) {
-				vex.dialog.prompt({
-				message: 'Please enter your e-mail',
-				placeholder: 'Email',
-				callback: function(value) {
-					if (value != false) {
-						var x = value;
-						var atpos = x.indexOf("@");
-						var dotpos = x.lastIndexOf(".");
-						if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-							location.reload();
-						} else {
-							var e = encodeURIComponent(value.replace(/\./g, '&#46;'))
-							window.location.replace("/welcome/home/" + e);
-						}
-					}
-				}
-			});
-		}
-	})
+	// $(document).ready( function() {
+	// 	var check = <%= session[:email_check] %>;
+	// 	if (!check) {
+	// 			vex.dialog.prompt({
+	// 			message: 'Please enter your e-mail',
+	// 			placeholder: 'Email',
+	// 			callback: function(value) {
+	// 				if (value != false) {
+	// 					var x = value;
+	// 					var atpos = x.indexOf("@");
+	// 					var dotpos = x.lastIndexOf(".");
+	// 					if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+	// 						location.reload();
+	// 					} else {
+	// 						var e = encodeURIComponent(value.replace(/\./g, '&#46;'))
+	// 						window.location.replace("/welcome/home/" + e);
+	// 					}
+	// 				}
+	// 			}
+	// 		});
+	// 	}
+	// })
 </script>

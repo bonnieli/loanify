@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IouApp</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Pacifico" %>
+  <title>LOANIFY</title>
+  <meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "reset", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "trunk", media: "all", "data-turbolinks-track" => true %>
+
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<%= javascript_include_tag "trunk", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<div class="container">
-		<div id="header">
-			<div id="loanify">loanify</div>
-		</div>
-		<% if notice %>
-			<p class="alert alert-success"><%= notice %></p>
-		<% end %>
-		<% if alert %>
-			<p class="alert alert-danger"><%= alert %></p>
-		<% end %>
-		<%= yield %>
+		<header class="slide">     <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+			<ul id="navToggle" class="burger slide">    <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+				<li></li><li></li><li></li>
+			</ul>
+			<h1>loanify</h1>
+		</header>
+		<nav class="slide">
+			<ul>
+				<li><a href="../trunk.html" class="active">HOME</a></li>
+				<li><a href="#">LINK TWO</a></li>
+				<li><a href="#">LINK THREE</a></li>
+				<li><a href="#">LINK FOUR</a></li>
+				<li><a href="#">LINK FIVE</a></li>
+				<li><a href="#">LINK SIX</a></li>
+				<li><a href="#">LINK SEVEN</a></li>
+			</ul>
+		</nav>
 
-		<a href="/home" id="go_home">Go back home</a>
-		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+		<div class="content slide">
+			<div id="header">
+				<div id="loanify">loanify</div>
+			</div>
+			<% if notice %>
+				<p class="alert alert-success"><%= notice %></p>
+			<% end %>
+			<% if alert %>
+				<p class="alert alert-danger"><%= alert %></p>
+			<% end %>
+			<%= yield %>
+
+			<a href="/home" id="go_home">Go back home</a>
+			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+		</div>
 	</div>
 
 </body>
