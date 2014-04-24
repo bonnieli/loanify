@@ -32,7 +32,7 @@
 						<tr>
 							<td>Status</td>
 							<% if t.paidback %>
-								<td>Paidback on <%= Date.parse(t.date_paidback).strftime("%d-%m-%Y") %></td>
+								<td>Paidback on <%= t.date_paidback.to_s %></td>
 							<% elsif t.reject %>
 								<td>Rejected</td>
 							<% else %>
@@ -116,7 +116,21 @@
 				message: 'Are you sure you want to select paidback date as ' + date + '?',
 				callback: function(value) {
 					if (value) {
-						window.location.replace("/welcome/paidback/" + t.data("id") + "/" + date);
+						var data = {"id": t.data("id"),
+												"datepaidback": date}
+						$.ajax({
+						  type: "POST",
+						  url: "/transaction/paidback",
+						  dataType: 'json',
+						  data: data,
+						  success: function(data) {
+						  	// vex.dialog.alert('This transaction has been paidback!');
+						  	location.reload();
+						  }, 
+						  error: function(data) {
+						  	alert('An error has occured');
+						  }
+						});
 					}
 				}
 			});

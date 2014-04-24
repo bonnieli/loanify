@@ -38,4 +38,12 @@ class TransactionController < ActionController::Base
     redirect_to transaction_uoi_url
   end
 
+  def paidback
+    if Transaction.paidback(params)
+      render :nothing => true, :status => 200, :content_type => 'text/html', :json => {"status" => 200}
+    else
+      render :nothing => true, :status => 200, :content_type => 'text/html', :json => {"status" => 500}
+    end
+  end
+
 end

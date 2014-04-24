@@ -14,7 +14,7 @@ IouApp::Application.routes.draw do
   get '/uoi', to: 'transaction#uoi'
 
   get '/transaction/delete/:id', to: 'transaction#delete'
-
+  post '/transaction/paidback', to: 'transaction#paidback'
 
   get '/welcome/home/:email', to: 'welcome#email'
 
