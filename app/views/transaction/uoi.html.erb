@@ -124,8 +124,11 @@
 						  dataType: 'json',
 						  data: data,
 						  success: function(data) {
-						  	// vex.dialog.alert('This transaction has been paidback!');
-						  	location.reload();
+						  	if (data.status == 500) {
+						  		vex.dialog.alert('Error - You have selected a date earlier than the transaction.')
+						  	} else if (data.status == 200) {
+						  		location.reload();
+						  	}
 						  }, 
 						  error: function(data) {
 						  	alert('An error has occured');
