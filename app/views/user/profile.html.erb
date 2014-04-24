@@ -1,1 +1,157 @@
-hi
+<div class="greeting">
+  <img src="<%= current_user.profile_picture + '?width=100&height=100' %>" style="border-radius:50%"/><br />
+  hello, <strong><%= current_user.first_name %> <%= current_user.last_name %></strong>
+</div>
+<h3 style="text-align:center;width:100%;">My Profile</h3>
+<div id="Stats" align="center" style="display:inline-block; background-color:white; width:100%">
+</div>
+
+<div id="BalanceHistory" style="pointer-events:none; height: 260px; width: 100%;"></div>
+<div id="CurrentOutstanding_d" style="pointer-events:none; height: 260px; width: 100%;"></div>
+<div id="CurrentOutstanding_ar" style="pointer-events:none; height: 260px; width: 100%;"></div>
+<div id="History_d" style="pointer-events:none; height: 260px; width: 100%;"></div>
+
+<%= javascript_include_tag "canvasjs", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "canvasjs.min", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "excanvas", "data-turbolinks-track" => true %>
+
+
+<script>
+  var raw_all_charts = <%= raw CGI.unescapeHTML(@all_charts) %>;
+
+ /*$(document).ready(function () {
+    var lst_stat = raw_all_charts.Stat
+    var str_stat = "<table style='border-spacing:10px'><tr><th colspan = '2'>Statistic Information</th></tr><tr><td>Average Paidback Time</td><td>" + lst_stat.Average_Paidback_Time + "</td></tr><tr><td>Total number of outstanding UOI</td><td>" + lst_stat.Outstanding_AR + "</td></tr><tr><td>Total number of outstanding IOU</td><td>" + lst_stat.Outstanding_Debt + "</td></tr><tr><td>UOI/IOU Ratio</td><td>" + lst_stat.Outstanding_Ratio + "</td></tr><tr><td>Total number of UOI rejected transactions</td><td>" + lst_stat.Transactions_Gotten_Rejected + "</td></tr><tr><td>Total number of IOU rejected transactions</td><td>" + lst_stat.Transactions_Rejected + "</td></tr><tr><td>Total number of paidback transaction</td><td>" + lst_stat.Transactions_PaidBack + "</td></tr></table></br>"
+    $("#Stats").html(str_stat);
+  }); */
+
+  //Balance History -- Line Chart
+  var dp_BalanceHistory_ar = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ x: new Date(data.table.date), y: data.table.l_amount});
+    });
+    return dataPoints;
+  };
+
+  var dp_BalanceHistory_d = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ x: new Date(data.table.date), y: data.table.b_amount});
+    });
+    return dataPoints;
+  };
+  
+  var c_BalanceHistory = new CanvasJS.Chart("BalanceHistory",
+    {
+      title:{text: "7 Day Account Balance History"},
+      axisX: {
+              title: "Date",
+              valueFormatString: "MM/DD",
+              interval:1,
+              intervalType: "day"},
+      axisY:{
+              title: "Amount",
+              includeZero: true},
+      legend:{
+              fontSize: 15,
+              verticalAlign: "bottom",
+              horizontalAlign: "center"},
+      data: [{
+              type: "line",
+              legendText: "IOU",
+              xValueType: "dateTime",
+              xValueFormatString: "MM/DD",
+              showInLegend: true,
+              dataPoints: dp_BalanceHistory_d(raw_all_charts.DebtLevel)
+            },
+            {
+              type: "line",
+              legendText: "UOI",
+              xValueType: "dateTime",
+              xValueFormatString: "MM/DD",
+              showInLegend: true,
+              dataPoints: dp_BalanceHistory_ar(raw_all_charts.DebtLevel)
+            }
+      ]
+    });
+  c_BalanceHistory.render();
+
+  //Current Outstanding Debt & AR -- Pie Chart
+  var dp_CurrentOutstanding_d = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ y: data.amount, indexLabel: data.l_fullname.toString()});
+    });
+    return dataPoints;
+  };
+  
+
+  var c_CurrentOutstanding_d = new CanvasJS.Chart("CurrentOutstanding_d",
+    {
+      title:{text: "Current Balance IOU"},
+      data: [{
+              type: "pie",
+              dataPoints: dp_CurrentOutstanding_d(raw_all_charts.Pie_d)
+            }
+      ]
+    });
+  c_CurrentOutstanding_d.render();
+
+  var dp_CurrentOutstanding_ar = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ y: data.amount, indexLabel: data.b_fullname.toString()});
+    });
+    return dataPoints;
+  }; 
+
+  var c_CurrentOutstanding_ar = new CanvasJS.Chart("CurrentOutstanding_ar",
+    {
+      title:{text: "Current Balance UOI"},
+      data: [{
+              type: "pie",
+              dataPoints: dp_CurrentOutstanding_ar(raw_all_charts.Pie_ar)
+            }
+      ]
+    });
+  c_CurrentOutstanding_ar.render();
+
+
+  //History Debt & AR -- Bubble Chart
+    //Transaction History -- Bubble Chart
+    var dp_TransactionHistory = function(datas) {
+    var dataPoints = [];
+    $.each(datas, function(i, data) {
+      dataPoints.push({ x: new Date(data.transaction_date), y: data.paidback_time, z: data.amount, name: data.l_fullname});
+    });
+    return dataPoints;
+  };
+  
+  var c_TransactionHistory = new CanvasJS.Chart("History_d",
+    {
+      title:{text: "Completed IOU Transaction History"},
+      axisX:{
+              title: "Date",
+              valueFormatString: "MM/DD",
+              intervalType: "day",
+              
+      },
+      axisY:{
+              title: "Paidback Time" 
+              },
+      legend:{
+              fontSize: 15,
+              verticalAlign: "bottom",
+              horizontalAlign: "center"},
+      data: [{
+              type: "bubble",
+              showInLegend: true,
+              legendText: "Size of Bubble represents amount",
+              dataPoints: dp_TransactionHistory(raw_all_charts.History_d)
+      }]
+   
+  });
+  c_TransactionHistory.render(); 
+
+</script>
