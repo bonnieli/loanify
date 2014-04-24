@@ -16,6 +16,8 @@ IouApp::Application.routes.draw do
   get '/transaction/delete/:id', to: 'transaction#delete'
   post '/transaction/paidback', to: 'transaction#paidback'
 
+  get '/profile', to: 'user#profile'
+
   get '/welcome/home/:email', to: 'welcome#email'
 
   get '/welcome/delete_transaction/:id', to: 'welcome#delete_transaction'
