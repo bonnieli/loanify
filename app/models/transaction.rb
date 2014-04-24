@@ -21,8 +21,8 @@ class Transaction < ActiveRecord::Base
 		if transaction.transaction_date > input["datepaidback"]
 			return false
 		end
-		transaction.datepaidback = input["datepaidback"]
-		transaction.paidback_time = (transaction.datepaidback - transaction.transaction_date).to_i
+		transaction.date_paidback = input["datepaidback"]
+		transaction.paidback_time = (transaction.date_paidback - transaction.transaction_date).to_i
 		return transaction.b_email
 	end
 
