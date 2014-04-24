@@ -18,10 +18,10 @@ class Transaction < ActiveRecord::Base
 	def self.paidback(input) #payback a transaction
 		transaction = Transaction.find(input["id"])
 		transaction.paidback = true
-		if transaction.transaction_date > input["datepaidback"].to_date
+		datepaidback = input["datepaidback"].to_date
+		if transaction.transaction_date > datepaidback
 			return false
 		end
-		datepaidback = input["datepaidback"].to_date
 		transaction.date_paidback = datepaidback 
 		transaction.paidback_time = (datepaidback - transaction.transaction_date).to_i
 		transaction.save
@@ -33,6 +33,7 @@ class Transaction < ActiveRecord::Base
 		transaction.reject = true
 		transaction.reject_date = Date.today
 		transaction.reject_reason = input["reject_reason"]
+		transaction.save
 		return transaction.l_email
 	end
 
