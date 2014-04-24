@@ -57,4 +57,8 @@ class User < ActiveRecord::Base
 		return (user.first_name + " " + user.last_name)
 	end
 
+	def fullname
+		return first_name + " " + last_name
+	end
+
 end

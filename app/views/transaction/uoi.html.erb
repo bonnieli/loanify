@@ -21,7 +21,7 @@
 					<% else %>
 						You owe
 					<% end %>
-					 <b><%= b.first_name + ' ' + b.last_name %></b>
+					 <b><%= b.fullname %></b>
 					<div class="amount">
 						$<%= sprintf('%.2f', t.amount) %>
 					</div>
