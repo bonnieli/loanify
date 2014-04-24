@@ -22,7 +22,7 @@ class TransactionController < ActionController::Base
     @email_to = params["BorrowerEmail"]
     UserMailer.new_transaction(@email_to, transaction_info).deliver
 
-    redirect_to home_url
+    render :json => {"status" => 200}
   end
 
   def iou
@@ -31,6 +31,11 @@ class TransactionController < ActionController::Base
 
   def uoi
     @transactions = Transaction.where(:id_l => current_user.id)
+  end
+
+  def delete
+    Transaction.deletetransaction(params[:id])
+    redirect_to transaction_uoi_url
   end
 
 end
