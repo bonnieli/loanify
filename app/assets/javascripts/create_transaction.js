@@ -26,7 +26,7 @@
 	      if (substrRegex.test(str.first_name + ' ' + str.last_name)) {
 	        // the typeahead jQuery plugin expects suggestions to a
 	        // JavaScript object, refer to typeahead docs for more info
-	        matches.push({ value: str, name: str.first_name + ' ' + str.last_name, id: str.id, profile_picture: str.profile_picture, email_address: str.email_address});
+	        matches.push({ value: str, full_name: str.first_name + ' ' + str.last_name, id: str.id, profile_picture: str.profile_picture, email_address: str.email_address});
 	      }
 	    });
 	 
@@ -42,8 +42,14 @@
 	},
 	{
 	  name: 'all_users',
-	  displayKey: 'name',
-	  source: substringMatcher(all_users)
+	  displayKey: 'full_name',
+	  source: substringMatcher(all_users),
+	  templates: {
+	  	empty: [
+	  		'sorry nothing available'
+	  	].join('\n'),
+	  	suggestion: Handlebars.compile('<img src="{{ profile_picture }}">{{ full_name }}')
+	  }
 	}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
 		document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;
 		document.getElementById("create_transaction").elements["B_Picture"].value = suggestion.profile_picture;

@@ -5,8 +5,6 @@
     <a href="/welcome/iou/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
 </div>
 			
-
-
 <% if @transactions %>
 	<% @transactions.each do |t| %>
 		<div class="transaction_container">
