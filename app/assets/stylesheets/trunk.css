@@ -228,6 +228,7 @@ nav.open {
 /*Nav Shrinking Closed Effect*/
 nav.close {
 	opacity: 0;
+	display: none;
 	
 	-webkit-transform: translate3d(5%,0,0)scale(.97);
 	-webkit-animation: slideOut .3s ease-in-out;

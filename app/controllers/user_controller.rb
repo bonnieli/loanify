@@ -1,5 +1,7 @@
 class UserController < ActionController::Base
   layout 'application'
+  before_action :authenticate_user! #checks if user is signed in
+  
   def profile
     all_charts = {}
 
