@@ -6,6 +6,8 @@ class Transaction < ActiveRecord::Base
 		transaction.description = input["description"]
 		transaction.paidback = false
 		transaction.reject = false
+		transaction.l_fullname = User.user_fullname(input["lender_key"])
+	    transaction.b_fullname = User.user_fullname(input["borrower_key"])
 		transaction.id_b = input["borrower_key"]
 		transaction.id_l = input["lender_key"]
 		transaction.amount = input["amount"]
@@ -80,14 +82,14 @@ class Transaction < ActiveRecord::Base
 #HISTORY GRAPH
 	def self.historygraph(input)
 		result = []
-		start = Date.today - 7
-		for i in (0..7)
+		start = Date.today - 6
+		for i in (0..6)
 			current = start + i
 			item = OpenStruct.new
-			item.l_amount = (Transaction.where("id_b = ? AND reject = ? AND transaction_date <= ? AND 
+			item.l_amount = (Transaction.where("id_l = ? AND reject = ? AND transaction_date <= ? AND 
 				(paidback = ? OR date_paidback > ?)", input, false, current, false, current).pluck("SUM(amount) as amount"))[0]
-			item.b_amount = (Transaction.where("id_l = ? AND reject = ? AND transaction_date <= ? AND 
-				(paidback = ? OR date_paidback > ?)", input, false, current, false, current).pluck("SUM(amount) as amount"))[0]
+			item.b_amount = (Transaction.where("id_b = ? AND reject = ? AND transaction_date <= ? AND 
+				(paidback = ? OR (date_paidback > ? AND date_paidback != ?))", input, false, current, false, current, nil).pluck("SUM(amount) as amount"))[0]
 			if item.l_amount == nil
 				item.l_amount = 0
 			end
@@ -104,13 +106,18 @@ class Transaction < ActiveRecord::Base
 
 #PIE CHARTS
 	def self.borrower_piechart(input) #input needs to be ID, check all IOUs
-		result = Transaction.find_by_sql("Select id_l, SUM(amount) as amount FROM Transactions WHERE id_b = '#{input}' GROUP BY id_l")
+		result = Transaction.select("l_fullname, SUM(amount) as amount").where("id_b = ? AND paidback = ? AND reject = ?", input, false, false).group("id_l, l_fullname")
 		return result.to_json
 	end
 
 	def self.lender_piechart(input) #input needs to be ID, check all UOIs
-		result = Transaction.find_by_sql("Select id_b, SUM(amount) as amount FROM Transactions WHERE id_l = '#{input}' GROUP BY id_b")
+		result = Transaction.select("b_fullname, SUM(amount) as amount").where("id_l = ? AND paidback = ? AND reject = ?", input, false, false).group("id_b, b_fullname")
 		return result.to_json
 	end
 
+#HISTORY CHART
+	def self.paidbackhistory(input)
+		result = Transaction.select("transaction_date, amount, paidback_time, l_fullname").where("id_b = ? AND paidback = ?", input, true)
+		return result.to_json
+	end
 end
