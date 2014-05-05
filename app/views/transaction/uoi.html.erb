@@ -32,7 +32,7 @@
 						<tr>
 							<td>Status</td>
 							<% if t.paidback %>
-								<td>Paidback on <%= t.date_paidback.to_s %></td>
+								<td>Paidback on <%= Date.parse(t.date_paidback.to_s).strftime("%b %d %Y") %></td>
 							<% elsif t.reject %>
 								<td>Rejected</td>
 							<% else %>
@@ -41,7 +41,7 @@
 						</tr>
 						<tr>
 							<td>Requested On</td>
-							<td><%= Date.parse(t.transaction_date.to_s).strftime("%d-%m-%Y") %></td>
+							<td><%= Date.parse(t.transaction_date.to_s).strftime("%b %d %Y") %></td>
 						</tr>
 						<tr>
 							<td>Description</td>
@@ -58,7 +58,6 @@
 							</td>
 						<% end %>
 					</table>
-
 				</div>
 			</div>
 		</div>
@@ -117,22 +116,22 @@
 				callback: function(value) {
 					if (value) {
 						var data = {"id": t.data("id"),
-												"datepaidback": date}
+									"datepaidback": date}
 						$.ajax({
-						  type: "POST",
-						  url: "/transaction/paidback",
-						  dataType: 'json',
-						  data: data,
-						  success: function(data) {
-						  	if (data.status == 500) {
-						  		vex.dialog.alert('Error - You have selected a date earlier than the transaction.')
-						  	} else if (data.status == 200) {
-						  		location.reload();
-						  	}
-						  }, 
-						  error: function(data) {
-						  	alert('An error has occured');
-						  }
+							type: "POST",
+							url: "/transaction/paidback",
+							dataType: 'json',
+							data: data,
+							success: function(data) {
+								if (data.status == 500) {
+									vex.dialog.alert('Error - You have selected a date earlier than the transaction.')
+								} else if (data.status == 200) {
+									location.reload();
+								}
+							}, 
+							error: function(data) {
+								alert('An error has occured');
+							}
 						});
 					}
 				}

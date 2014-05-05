@@ -46,4 +46,12 @@ class TransactionController < ActionController::Base
     end
   end
 
+  def reject
+    if Transaction.reject(params)
+      render :nothing => true, :status => 200, :content_type => 'text/html', :json => {"status" => 200}
+    else
+      render :nothing => true, :status => 200, :content_type => 'text/html', :json => {"status" => 500}
+    end
+  end
+
 end

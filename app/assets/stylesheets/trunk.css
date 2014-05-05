@@ -80,6 +80,8 @@ nav li a {
 	font-size: 11px;
 	color: #9aa6af;
 	padding: 24px 15px;
+	text-decoration: none;
+	text-transform: uppercase;
 	
 	display: block;
 }

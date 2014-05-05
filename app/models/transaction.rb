@@ -36,7 +36,7 @@ class Transaction < ActiveRecord::Base
 		transaction.reject_date = Date.today
 		transaction.reject_reason = input["reject_reason"]
 		transaction.save
-		return transaction.l_email
+		return true
 	end
 
 	def self.deletetransaction(input)
