@@ -46,6 +46,13 @@ class TransactionController < ActionController::Base
     end
   end
 
+  def display
+    @transaction = Transaction.find(params[:id])
+    @loaner = User.find(@transaction.id_l)
+    @borrower = User.find(@transaction.id_b)
+    @user = current_user
+  end
+
   def reject
     if Transaction.reject(params)
       render :nothing => true, :status => 200, :content_type => 'text/html', :json => {"status" => 200}

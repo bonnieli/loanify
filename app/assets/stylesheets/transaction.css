@@ -1,0 +1,99 @@
+b,
+strong {
+  font-weight: bold !important;
+}
+.transaction_container {
+  margin: -5px 0 0 0;
+}
+.transaction_container li {
+  border-bottom: 1px solid #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+.transaction_container li:first-child {
+  border-top: 1px solid #000000;
+}
+.transaction_container li .money {
+  font-size: medium;
+  vertical-align: baseline;
+  font-weight: bold;
+  display: inline-block;
+}
+.transaction_container li .icon {
+  display: inline-block;
+  text-align: center;
+  width: 50px;
+}
+.transaction_container li .icon .fa {
+  vertical-align: middle;
+}
+.transaction_container li .icon .reject {
+  color: #c0392b;
+}
+.transaction_container li .icon .check {
+  color: #27ae60;
+}
+.transaction_container li .icon .owe {
+  color: #f1c40f;
+}
+.transaction_container li .transaction_pic {
+  border-radius: 50%;
+  padding: 10px;
+  vertical-align: middle;
+}
+.display_transaction {
+  padding-top: 20px;
+}
+.display_transaction .pic {
+  text-align: center;
+}
+.display_transaction .pic .transaction_pic {
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.display_transaction .pb-container {
+  padding-right: 20px;
+}
+.display_transaction .pb-container input {
+  width: 100%;
+  padding: 10px;
+}
+.display_transaction .header {
+  text-align: center;
+  margin-top: 10px;
+}
+.display_transaction .header h1 {
+  font-size: 20pt;
+}
+.display_transaction .details {
+  padding: 20px;
+  /** end of .details_table **/
+
+}
+.display_transaction .details .details_table {
+  width: 100%;
+}
+.display_transaction .details .details_table tr {
+  padding-bottom: 20px;
+}
+.display_transaction .details .details_table tr td {
+  padding: 15px 5px;
+}
+.display_transaction .details .details_table tr td:first-child {
+  width: 50%;
+  font-weight: bold;
+  padding-right: 10px;
+}
+.display_transaction .details .reject_button,
+.display_transaction .details .paidback_button,
+.display_transaction .details .delete {
+  display: block;
+  text-align: center;
+  background: #e74c3c;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 10px 0;
+}

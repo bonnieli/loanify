@@ -48,7 +48,7 @@
 	  	empty: [
 	  		'sorry nothing available'
 	  	].join('\n'),
-	  	suggestion: Handlebars.compile('<img src="{{ profile_picture }}">{{ full_name }}')
+	  	suggestion: Handlebars.compile('<img class="profile_pic" src="{{ profile_picture }}">{{ full_name }}')
 	  }
 	}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
 		document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;

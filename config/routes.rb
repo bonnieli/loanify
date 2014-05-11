@@ -13,6 +13,7 @@ IouApp::Application.routes.draw do
   get '/iou', to: 'transaction#iou'
   get '/uoi', to: 'transaction#uoi'
 
+  get '/transaction/:id', to: 'transaction#display'
   get '/transaction/delete/:id', to: 'transaction#delete'
   post '/transaction/paidback', to: 'transaction#paidback'
   post '/transaction/reject', to: 'transaction#reject'

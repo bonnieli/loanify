@@ -1,120 +1,20 @@
-<div class="tabs">
-    <a href="/welcome/iou" <% if @status == "all" %>class="active"<% end %>>All</a>
-    <a href="/welcome/iou/unpaid" <% if @status == "unpaid" %>class="active"<% end %>>Unpaid</a>
-    <a href="/welcome/iou/paid" <% if @status == "paid" %>class="active"<% end %>>Paid</a>
-    <a href="/welcome/iou/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
-</div>
-			
-<% if @transactions %>
+<ul class="transaction_container">
 	<% @transactions.each do |t| %>
-		<div class="transaction_container">
-			<% l = User.find(t.id_l) %>
-			<div class="transaction_box <% if t.reject %> red <% elsif t.paidback %> green <% end %>">
-				<img src="<%= l.profile_picture %>" class="transaction_pic" />
-				<div class="transaction_details">
-					<% if t.reject %>
-						You rejected
-					<% elsif t.paidback %>
-						You paid back
-					<% else %>
-						You owe
-					<% end %>
-					 <b><%= l.first_name + ' ' + l.last_name %></b>
-					<div class="amount">
-						$<%= sprintf('%.2f', t.amount) %>
-					</div>
-					<a href="#" class="more_options"></a>
-				</div>
-				<div class="options" style="display:none">
-					<table class="details_table">
-						<tr>
-							<td>Status</td>
-							<% if t.paidback %>
-								<td>Paidback on <%= Date.parse(t.date_paidback.to_s).strftime("%b %d %Y") %></td>
-							<% elsif t.reject %>
-								<td>Rejected on <%= Date.parse(t.reject_date.to_s).strftime("%b %d %Y") %></td>
-							<% else %>
-								<td>Unpaid</td>
-							<% end %>
-						</tr>
-						<% if t.reject %>
-						<tr>
-							<td>Reject Reason</td>
-							<td><%= t.reject_reason %></td>
-						</tr>
-						<% end %>
-						<tr>
-							<td>Requested On</td>
-							<td><%= Date.parse(t.transaction_date.to_s).strftime("%b %d %Y") %></td>
-						</tr>
-						<tr>
-							<td>Description</td>
-							<td><%= t.description %></td>
-						</tr>
-						<% unless t.reject or t.paidback %>
-							<td>
-								<a href="#" data-id=<%= t.id %> class="reject_button reject-confirm" >Reject</a>
-							</td>
-							<td></td>
-						<% end %>
-					</table>
-
-
-
-				</div>
-			</div>
-		</div>
+		<% l = User.find(t.id_l) %>
+		<li data-id=<%= t.id %>>
+			<img src="<%= l.profile_picture %>" class="transaction_pic" />
+			<% if t.reject %>
+				<div class="icon"><i class="fa fa-2x fa-times reject"></i></div>
+				You rejected <b><%= l.fullname %></b> of <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+			<% elsif t.paidback %>
+				<div class="icon"><i class="fa fa-2x fa-check check"></i></div>
+				You paidback <b><%= l.fullname %></b> <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+			<% else %>
+				<div class="icon"><i class="fa fa-2x fa-money owe"></i></div>
+				You owe <b><%= l.fullname %></b> <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+			<% end %>
+		</li>
 	<% end %>
-<% else %>
-	You owe no one money!
-<% end %>
+</ul>
 
-<%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
-<script>vex.defaultOptions.className = 'vex-theme-os';</script>
-<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
-<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
-
-<script>
-	$(document).ready(function () {
-	    $(".transaction_details").click( function(e) {
-	    	e.preventDefault();
-	    	var arrow = $(this).children(".more_options");
-	        var box = $(this).siblings(".options");
-	        $(box).slideToggle(function () {
-	            if ($(box).is(":visible")) {
-	                $(arrow).css("background-image", "url(http://i.imgur.com/iqVwIpT.png)");
-	            } else {
-	                $(arrow).css("background-image", "url(http://i.imgur.com/xk7c9PB.png)");
-	            }
-	        });
-	    });
-
-	    $(".reject-confirm").click( function() {
-	    	var t = $(this);
-	    	vex.dialog.prompt({
-				message: 'Are you sure you want to reject this transaction?',
-				placeholder: 'Reject reason',
-				callback: function(value) {
-					if (value) {
-						// window.location.replace("/welcome/reject/" + t.data("id"));
-						var data = {"id": t.data("id"),
-									"reject_reason": value}
-						$.ajax({
-							type: "POST",
-							url: "/transaction/reject",
-							dataType: 'json',
-							data: data,
-							success: function(data) {
-								location.reload();
-							}, 
-							error: function(data) {
-								alert('An error has occured');
-							}
-						});
-					}
-				}
-			});
-	    })
-	
-	});
-</script>
+<%= javascript_include_tag "transactions/iou-uoi" %>

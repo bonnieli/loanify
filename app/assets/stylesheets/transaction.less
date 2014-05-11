@@ -1,0 +1,97 @@
+@black: #000000;
+@white: #ffffff;
+@grey: #ccc;
+@red: red;
+@blue: #3AB8C6;
+@grey: #F1F2F3;
+
+
+b, strong {
+	font-weight: bold !important;
+}
+.transaction_container {
+	margin: -5px 0 0 0;
+	li {
+		border-bottom: 1px solid @black;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		cursor: pointer;
+		&:first-child {
+			border-top: 1px solid @black;
+		}
+		.money {
+			font-size: medium;
+			vertical-align: baseline;
+			font-weight: bold;
+			display: inline-block;
+		}
+		.icon {
+			display:inline-block;
+			text-align: center;
+			width: 50px;
+			.fa {
+				vertical-align: middle;
+			}
+			.reject { color: #c0392b; }
+			.check { color: #27ae60; }
+			.owe { color: #f1c40f; }
+		}
+		.transaction_pic {
+			border-radius: 50%;	
+			padding: 10px;
+			vertical-align: middle;
+		}
+	}
+}
+
+.display_transaction {
+	padding-top: 20px;
+	.pic {
+		text-align: center;
+		.transaction_pic {
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+	}
+	.pb-container {
+		padding-right: 20px;
+		input {
+			width: 100%;
+			padding: 10px;
+		}
+	}
+	.header {
+		text-align: center;
+		margin-top: 10px;
+		h1 {
+			font-size: 20pt;
+		}
+	}
+	.details{
+		padding: 20px;
+		.details_table {
+    	width: 100%;
+    	tr {
+    		padding-bottom: 20px;
+    		td {
+    			padding: 15px 5px;
+    			&:first-child {
+	    			width: 50%;
+	    			font-weight: bold;
+	    			padding-right: 10px;
+    			}
+    		}
+    	}
+    } /** end of .details_table **/
+    .reject_button, .paidback_button, .delete {
+	    display: block;
+	    text-align: center;
+	    background: #e74c3c;
+	    color: #fff;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    font-weight: bold;
+	    padding: 10px 0;
+		}
+	}
+}

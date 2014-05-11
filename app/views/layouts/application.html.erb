@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html>
 <head>
-  <title>LOANIFY</title>
-  <meta charset="utf-8">
+	<title>LOANIFY</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= stylesheet_link_tag "transaction", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "reset", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "trunk", media: "all", "data-turbolinks-track" => true %>
+	<%= stylesheet_link_tag "font-awesome.css", media: "all", "data-turbolinks-track" => true %>
 
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<%= javascript_include_tag "trunk", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -42,7 +44,6 @@
 				<p class="alert alert-danger"><%= alert %></p>
 			<% end %>
 			<%= yield %>
-
 		</div>
 	</div>
 

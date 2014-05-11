@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
+
+<div class="display_transaction">
+	<div class="pic">
+		<img src="<%= @borrower.profile_picture %>" class="transaction_pic" />
+		<i class="fa fa-2x fa-arrow-right"></i>
+		<img src="<%= @loaner.profile_picture %>" class="transaction_pic" />
+	</div>
+	<div class="header">
+		<%= @borrower.fullname %> owes <%= @loaner.fullname %>
+		<h1>$<%= sprintf('%.2f', @transaction.amount) %></h1>
+	</div>
+	<div class="details">
+		<table class="details_table">
+			<tr>
+				<td>Status</td>
+				<% if @transaction.paidback %>
+					<td>Paidback on <%= Date.parse(@transaction.date_paidback.to_s).strftime("%b %d %Y") %></td>
+				<% elsif @transaction.reject %>
+					<td>Rejected on <%= Date.parse(@transaction.reject_date.to_s).strftime("%b %d %Y") %></td>
+				<% else %>
+					<td>Unpaid</td>
+				<% end %>
+			</tr>
+			<% if @transaction.reject %>
+			<tr>
+				<td>Reject Reason</td>
+				<td><%= @transaction.reject_reason %></td>
+			</tr>
+			<% end %>
+			<tr>
+				<td>Requested On</td>
+				<td><%= Date.parse(@transaction.transaction_date.to_s).strftime("%b %d %Y") %></td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><%= @transaction.description %></td>
+			</tr>
+			<% unless @transaction.paidback %>
+				<% unless @user.id == @transaction.id_b %>
+					<tr>
+						<td>
+							<div class="pb-container">
+								<input type="text" data-date=<%= @transaction.transaction_date.to_s %> data-id=<%= @transaction.id %> class="pb-date" data-date-format="dd-mm-yyyy" placeholder="Paidback Date">
+							</div>
+						</td>
+						<td>
+							<a href="#" data-id=<%= @transaction.id %> class="delete delete-confirm" >Delete</a>
+						</td>
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+		<% unless @transaction.reject %>
+			<% unless @user.id == @transaction.id_l %>
+				<a href="#" data-id=<%= @transaction.id %> class="reject_button reject-confirm" >Reject</a>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+<%= javascript_include_tag "bootstrap-datepicker" %>
+<%= javascript_include_tag "vex.combined.min" %>
+<script>vex.defaultOptions.className = 'vex-theme-os';</script>
+<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "transactions/display" %>

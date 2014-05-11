@@ -6,8 +6,10 @@
 @four: #35D2AB;
 @five: #5FD2B5;
 @grey: #ccc;
+@grey_2: #F1F2F3;
 @red: red;
 @text: #ddd;
+
 
 @import url("http://fonts.googleapis.com/css?family=Lato:100,400");
 
@@ -18,19 +20,16 @@
 	}
 }
 
+.border(@r) {
+	border-radius: @r;
+}
 
 body {
-    font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-weight: 300;
-    font-size: 10pt;
-    margin: 0;
-    padding: 10px;
-
     .container {
-		.content {
-			margin-top: 65px;
+			.content {
+				margin-top: 65px;
+			}
 		}
-	}
 	
 
 	.greeting {
@@ -50,25 +49,35 @@ body {
 		margin: 5px 0;
 	}
 
-	#create_transaction {
-		width: 100%;
-		.twitter-typeahead {
+	.create_transaction_container {
+		padding: 20px;
+		#create_transaction {
 			width: 100%;
-		}
-		input, select {
-			width: 100%;
-			border: 0;
-			padding: 10px;
-			box-sizing:border-box;
-			-moz-box-sizing:border-box; /* Firefox */
-			margin-top: 0;
-			border-radius: 0;
-			-webkit-appearance: none;
-		}
-		#submit {
-			background-color: #3498db;
-			text-transform: uppercase;
-			color: @white;
+			.twitter-typeahead {
+				width: 100%;
+			}
+			input, select {
+				width: 100%;
+				border: 0;
+				padding: 10px;
+				box-sizing:border-box;
+				-moz-box-sizing:border-box; /* Firefox */
+				margin-top: 0;
+				border-radius: 0;
+				-webkit-appearance: none;
+				background-color: @grey_2;
+			}
+			.profile_pic {
+				.border(50%);
+				width: 30px;
+				vertical-align: middle;
+				margin-right: 20px;
+			}
+			#submit {
+				background-color: #3498db;
+				text-transform: uppercase;
+				color: @white;
+			}
 		}
 	}
 	#profile, #c_transaction, #iou_button, #uoi_button {
@@ -122,95 +131,6 @@ body {
 		.active {
 			background-color: rgba(216, 216, 216, 0.59);
 		    color: #000;
-		}
-	}
-
-	.transaction_container {
-		background-color: @white;
-		margin: 10px 10px 0 10px;
-		.transaction_box.red {
-			border-left: 10px solid #c0392b;
-		}
-		.transaction_box.green {
-			border-left: 10px solid #16a085;
-		}
-		.transaction_box {
-	    padding: 10px 10px 0 10px;
-	    color: #414141;
-	    border-left: 10px solid #f1c40f;
-
-	    .transaction_details {
-		    padding-bottom: 10px;
-		    .amount {
-			    font-size: 25pt;
-			    color: #000;
-			    letter-spacing: 1px;
-			    font-family: arial;
-				}
-				.more_options {
-			    background-image: url('http://i.imgur.com/xk7c9PB.png');
-			    height: 30px;
-			    width: 30px;
-			    margin-top: -40px;
-			    background-repeat: no-repeat;
-			    background-position: 50%;
-			    background-size: 20px 20px;
-			    float:right;	
-				}
-			}
-	    .transaction_pic {
-		    border-radius: 50%;
-		    margin-right: 10px;
-		    float: left;
-			}
-			.options {
-			    padding: 10px;
-			    .details_table, th {
-			    	width: 100%;
-			    	border-left: 1px solid @grey;
-			    	border-right: 1px solid @grey;
-			    	tr {
-			    		border-top: 1px solid @grey;
-			    		td {
-			    			padding: 5px;
-			    			&:first-child {
-				    			width: 50%;
-				    			font-weight: bold;
-				    			padding-right: 10px;		    				
-			    			}
-			    		}
-			    		&:last-child {
-			    			border-bottom: 1px solid @grey;
-			    		}
-			    	}
-			    	.reject_button, .paidback_button, .delete {
-					    display: block;
-					    text-align: center;
-					    background: #e74c3c;
-					    color: #fff;
-					    text-decoration: none;
-					    text-transform: uppercase;
-					    font-weight: bold;
-					    padding: 10px 0;
-						}
-			    } /** end of .details_table **/
-				.pb-container {
-					.pb-date {
-						width: 100%;
-						padding: 10px;
-						-moz-box-sizing: border-box; 
-						border: 1px solid #ccc;
-				    -webkit-box-sizing: 
-				    border-box; box-sizing: border-box; 
-					}
-				}
-				.paidback_button {
-					background: green;
-				}
-				.rejected, .delete {
-			    background: #ddd;
-				}
-			}
 		}
 	}
 

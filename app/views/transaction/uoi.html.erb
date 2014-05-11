@@ -1,142 +1,20 @@
-<%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
-
-<div class="tabs">
-    <a href="/welcome/iou" <% if @status == "all" %>class="active"<% end %>>All</a>
-    <a href="/welcome/iou/unpaid" <% if @status == "unpaid" %>class="active"<% end %>>Unpaid</a>
-    <a href="/welcome/iou/paid" <% if @status == "paid" %>class="active"<% end %>>Paid</a>
-    <a href="/welcome/iou/rejected" <% if @status == "rejected" %>class="active"<% end %>>Rejected</a>
-</div>
-
-<% if @transactions %>
+<ul class="transaction_container">
 	<% @transactions.each do |t| %>
-		<div class="transaction_container">
-			<% b = User.find(t.id_b) %>
-			<div class="transaction_box <% if t.reject %> red <% elsif t.paidback %> green <% end %>">
-				<img src="<%= b.profile_picture %>" class="transaction_pic" />
-				<div class="transaction_details">
-					<b><%= b.fullname %></b>
-					<% if t.reject %>
-						rejected this transaction of
-					<% elsif t.paidback %>
-						paidback this transaction of
-					<% else %>
-						owes you
-					<% end %>
-					<div class="amount">
-						$<%= sprintf('%.2f', t.amount) %>
-					</div>
-					<a href="#" class="more_options"></a>
-				</div>
-				<div class="options" style="display:none">
-					<table class="details_table">
-						<tr>
-							<td>Status</td>
-							<% if t.paidback %>
-								<td>Paidback on <%= Date.parse(t.date_paidback.to_s).strftime("%b %d %Y") %></td>
-							<% elsif t.reject %>
-								<td>Rejected</td>
-							<% else %>
-								<td>Unpaid</td>
-							<% end %>
-						</tr>
-						<tr>
-							<td>Requested On</td>
-							<td><%= Date.parse(t.transaction_date.to_s).strftime("%b %d %Y") %></td>
-						</tr>
-						<tr>
-							<td>Description</td>
-							<td><%= t.description %></td>
-						</tr>
-						<% unless t.reject or t.paidback %>
-							<td>
-								<div class="pb-container">
-									<input type="text" data-date=<%= t.transaction_date.to_s %> data-id=<%= t.id %> class="pb-date" data-date-format="dd-mm-yyyy" placeholder="Paidback Date">
-								</div>
-							</td>
-							<td>
-								<a href="#" data-id=<%= t.id %> class="delete delete-confirm" >Delete</a>
-							</td>
-						<% end %>
-					</table>
-				</div>
-			</div>
-		</div>
+		<% b = User.find(t.id_b) %>
+		<li data-id=<%= t.id %>>
+			<img src="<%= b.profile_picture %>" class="transaction_pic" />
+			<% if t.reject %>
+				<div class="icon"><i class="fa fa-2x fa-times reject"></i></div>
+				<b><%= b.fullname %></b> rejected <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+			<% elsif t.paidback %>
+				<div class="icon"><i class="fa fa-2x fa-check check"></i></div>
+				<b><%= b.fullname %></b> paidback <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+			<% else %>
+				<div class="icon"><i class="fa fa-2x fa-money owe"></i></div>
+				<b><%= b.fullname %></b> owes <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+			<% end %>
+		</li>
 	<% end %>
-<% else %>
-	No one owes you money!
-<% end %>
+</ul>
 
-<%= javascript_include_tag "bootstrap-datepicker", "data-turbolinks-track" => true %>
-
-<%= javascript_include_tag "vex.combined.min.js", "data-turbolinks-track" => true %>
-<script>vex.defaultOptions.className = 'vex-theme-os';</script>
-<%= stylesheet_link_tag    "vex", media: "all", "data-turbolinks-track" => true %>
-<%= stylesheet_link_tag    "vex-theme-os", media: "all", "data-turbolinks-track" => true %>
-
-<script>
-	$(document).ready(function () {
-	    $(".transaction_details").click( function(e) {
-	    	e.preventDefault();
-	    	var arrow = $(this).children(".more_options");
-	    	var box = $(this).siblings(".options");
-			$(box).slideToggle(function () {
-				if ($(box).is(":visible")) {
-				    $(arrow).css("background-image", "url(http://i.imgur.com/iqVwIpT.png)");
-				} else {
-				    $(arrow).css("background-image", "url(http://i.imgur.com/xk7c9PB.png)");
-				}
-			});
-	    });
-
-	    $(".delete-confirm").click( function() {
-	    	var t = $(this);
-	    	vex.dialog.confirm({
-				message: 'Are you sure you want to delete this transaction?',
-				callback: function(value) {
-					if (value) {
-						window.location.replace("/welcome/delete_transaction/" + t.data("id"));
-					}
-				}
-			});
-		});
-
-	    
-    var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-    var date_pickers = $('.pb-date').datepicker({
-	    onRender: function(date) {
-	   		return date.valueOf() < now.valueOf() ? 'disabled' : ''; // disables any dates before today
-    	}
-    }).on('changeDate', function(ev){
-		    $(this).datepicker('hide');
-		    var date = $(this).val();
-		    var t = $(this);
-		    vex.dialog.open({
-				message: 'Are you sure you want to select paidback date as ' + date + '?',
-				callback: function(value) {
-					if (value) {
-						var data = {"id": t.data("id"),
-									"datepaidback": date}
-						$.ajax({
-							type: "POST",
-							url: "/transaction/paidback",
-							dataType: 'json',
-							data: data,
-							success: function(data) {
-								if (data.status == 500) {
-									vex.dialog.alert('Error - You have selected a date earlier than the transaction.')
-								} else if (data.status == 200) {
-									location.reload();
-								}
-							}, 
-							error: function(data) {
-								alert('An error has occured');
-							}
-						});
-					}
-				}
-			});
-		}).data('datepicker');
-			
-	});
-</script>
+<%= javascript_include_tag "transactions/iou-uoi" %>
