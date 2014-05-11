@@ -1,5 +1,4 @@
-<h2>Sign in</h2>
-
-
-
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+<div class="sign_in">
+	<h1>Log-in using Facebook</h1>
+	<%= link_to raw('<i class="fa fa-facebook-square"></i>Facebook'), user_omniauth_authorize_path(:facebook), :class => "facebook" %>
+</div>

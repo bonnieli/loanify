@@ -1,0 +1,35 @@
+@facebook: #3B5997;
+@facebook-hover: #6E8FD3;
+
+.transition(@s) {
+	-webkit-transition: 500ms linear @s;
+	-moz-transition: 500ms linear @s;
+	-o-transition: 500ms linear @s;
+	transition: 500ms linear @s;
+}
+
+.sign_in {
+	margin: 20px;
+	padding: 20px;
+	h1 {
+		font-size: 15pt;
+		text-align: center;
+		text-transform: uppercase;
+		margin: 0 0 30px 0;
+	}
+	.facebook {
+		display:block;
+		background-color: @facebook;
+		color: #ffffff;
+		text-align: center;
+		padding: 20px;
+		text-decoration: none;
+		.transition(0.2s);
+		&:hover {
+			background-color: @facebook-hover;
+		}
+	}
+	.fa-facebook-square {
+		margin-right: 5px;
+	}
+}
