@@ -2,19 +2,6 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 10pt;
 	color: #000;
-	text-rendering: optimizelegibility;
-	
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	-webkit-text-size-adjust: none;
-	-webkit-font-smoothing: antialiased;
-	
-	-moz-tap-highlight-color:rgba(0,0,0,0); 
-	-moz-text-size-adjust: none;
-	-moz-font-smoothing: antialiased;
-	
-	-ms-tap-highlight-color:rgba(0,0,0,0); 
-	-ms-text-size-adjust: none;
-	-ms-font-smoothing: antialiased;
 }
 
 .container {
@@ -123,6 +110,8 @@ header {
 	height: 60px;
 	z-index: 2;
 	background-color: #271940;
+	background-image: url('/assets/poly_blue.png');
+	background-size: 100%;
 	
 	position: fixed;
 	top: 0;
@@ -139,6 +128,8 @@ header h1 {
 	text-align: center;
 	padding-left: 0;
 	display: block;
+	font-size:20pt;
+	padding-top:10px;
 }
 .burger {display: block;}
 
@@ -169,6 +160,10 @@ nav li a.active {
 nav li a:hover {
 	color: #fff;
 	background-color: #19252c;
+}
+
+nav li a .fa {
+	margin-right: 10px;
 }
 nav li:first-child a.active,
 nav li:first-child a:hover 

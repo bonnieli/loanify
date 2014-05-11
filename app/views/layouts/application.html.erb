@@ -6,7 +6,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
 	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "transaction", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "reset", media: "all", "data-turbolinks-track" => true %>
@@ -28,11 +28,11 @@
 		</header>
 		<nav class="slide close">
 			<ul>
-				<li><a href="/profile" class="active">Profile</a></li>
-				<li><a href="/transaction/create">Create Transaction</a></li>
-				<li><a href="/iou">People whom I owe money to</a></li>
-				<li><a href="/uoi">People who owe me money</a></li>
-				<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+				<li><a href="/profile" class="active"><i class="fa fa-user"></i>Profile</a></li>
+				<li><a href="/transaction/create"><i class="fa fa-star"></i>Create</a></li>
+				<li><a href="/iou"><i class="fa fa-money"></i>Debts</a></li>
+				<li><a href="/uoi"><i class="fa fa-usd"></i>Loans</a></li>
+				<li><%= link_to(raw('<i class="fa fa-sign-out"></i> Logout'), destroy_user_session_path, :method => :delete) %></li>
 			</ul>
 		</nav>
 

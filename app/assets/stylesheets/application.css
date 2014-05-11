@@ -53,9 +53,10 @@ body .create_transaction_container #create_transaction .profile_pic {
   margin-right: 20px;
 }
 body .create_transaction_container #create_transaction #submit {
-  background-color: #3498db;
+  background-color: #3ab8c6;
   text-transform: uppercase;
   color: #ffffff;
+  cursor: pointer;
 }
 body #profile,
 body #c_transaction,
