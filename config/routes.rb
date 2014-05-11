@@ -10,6 +10,7 @@ IouApp::Application.routes.draw do
   get '/transaction/create', to: 'transaction#create'
   post '/transaction/post', to: 'transaction#post'
 
+  # Loan and Debt 
   get '/iou', to: 'transaction#iou'
   get '/uoi', to: 'transaction#uoi'
 
@@ -18,22 +19,11 @@ IouApp::Application.routes.draw do
   post '/transaction/paidback', to: 'transaction#paidback'
   post '/transaction/reject', to: 'transaction#reject'
 
+  # Profile
   get '/profile', to: 'user#profile'
 
   get '/welcome/home/:email', to: 'welcome#email'
 
-  get '/welcome/delete_transaction/:id', to: 'welcome#delete_transaction'
-  get '/welcome/iou/rejected', to: 'welcome#iou_rejected'
-  get '/welcome/iou/paid', to: 'welcome#iou_paid'
-  get '/welcome/iou/unpaid', to: 'welcome#iou_unpaid'
-  get '/welcome/uoi/rejected', to: 'welcome#uoi_rejected'
-  get '/welcome/uoi/paid', to: 'welcome#uoi_paid'
-  get '/welcome/uoi/unpaid', to: 'welcome#uoi_unpaid'
-  get '/welcome/paidback/:id/:d', to: 'welcome#paidback'
-  get '/welcome/reject/:id', to: 'welcome#reject'
-  get '/welcome/profile', to: 'welcome#profile'
-
-  get '/welcome/paidback_error', to: 'welcome#pb_error'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
