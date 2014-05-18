@@ -51,13 +51,6 @@ $(' .typeahead').typeahead({
 	document.getElementById("create_transaction").elements["BorrowerEmail"].value = suggestion.email_address;
 });
 
-$("#Amount").on("keyup", function(){
-var valid = /^\d{0,4}(\.\d{0,2})?$/.test(this.value),
-  val = this.value;    
-if(!valid){
-  this.value = val.substring(0, val.length - 1);
-}
-});
 
 $("#create_transaction").validate({
   rules: {
