@@ -1,7 +1,8 @@
 IouApp::Application.routes.draw do
   ## SET ROOT
   # root "application#index"
-  root "welcome#home"
+  # root "welcome#home"
+  root "user#profile"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get '/home', to: 'welcome#home'
