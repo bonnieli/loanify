@@ -4,6 +4,7 @@
 @red: red;
 @blue: #3AB8C6;
 @grey: #F1F2F3;
+@teal: #3EACBC;
 
 
 b, strong {
@@ -12,12 +13,12 @@ b, strong {
 .transaction_container {
 	margin: -5px 0 0 0;
 	li {
-		border-bottom: 1px solid @black;
+		border-bottom: 1px solid @grey;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 		cursor: pointer;
 		&:first-child {
-			border-top: 1px solid @black;
+			border-top: 1px solid @grey;
 		}
 		.money {
 			font-size: medium;
@@ -46,6 +47,14 @@ b, strong {
 
 .display_transaction {
 	padding-top: 20px;
+	.back {
+		margin: 0 20px 20px 20px;
+		padding: 15px;
+		text-align: center;
+		background-color: @teal;
+		color: @white;
+		cursor: pointer;
+	}
 	.pic {
 		text-align: center;
 		.transaction_pic {
