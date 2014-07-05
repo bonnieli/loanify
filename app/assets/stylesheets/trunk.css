@@ -19,12 +19,13 @@ body {
 header {
 	height: 60px;
 	position: relative;
+	background-image: url('/assets/poly_blue.png');
 	/*background-image: url('/assets/poly_bg.png');*/
 	/*background-size: 100%;*/
 	background-color: #f3f5f6;
 }
 header h1 {
-	color: #9aa6af;
+	color: #ffffff;
 	text-align: left;
 	font-size: 27px;
 	line-height: 60px;
@@ -63,9 +64,12 @@ nav li {
 	
 	display: inline-block;
 }
+nav li i {
+	margin-right: 10px;
+}
 nav li a {
 	font-size: 11px;
-	color: #9aa6af;
+	color: #fff;
 	padding: 24px 15px;
 	text-decoration: none;
 	text-transform: uppercase;

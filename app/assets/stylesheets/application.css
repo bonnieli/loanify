@@ -121,3 +121,12 @@ body .tabs .active {
   background-color: rgba(216, 216, 216, 0.59);
   color: #000;
 }
+@media only screen and (min-width: 780px) {
+  body .container .content {
+    margin-top: 0px;
+  }
+  body .create_transaction_container {
+    width: 50%;
+    margin: 0 auto;
+  }
+}

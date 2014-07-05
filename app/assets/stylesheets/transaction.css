@@ -6,13 +6,13 @@ strong {
   margin: -5px 0 0 0;
 }
 .transaction_container li {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #f1f2f3;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   cursor: pointer;
 }
 .transaction_container li:first-child {
-  border-top: 1px solid #000000;
+  border-top: 1px solid #f1f2f3;
 }
 .transaction_container li .money {
   font-size: medium;
@@ -41,6 +41,9 @@ strong {
   border-radius: 50%;
   padding: 10px;
   vertical-align: middle;
+}
+.show_transaction {
+  display: none;
 }
 .display_transaction {
   padding-top: 20px;
@@ -96,4 +99,71 @@ strong {
   text-transform: uppercase;
   font-weight: bold;
   padding: 10px 0;
+}
+@media only screen and (min-width: 780px) {
+  .transaction_container {
+    width: 50%;
+    float: left;
+  }
+  .show_transaction {
+    width: 50%;
+    display: block;
+    float: right;
+  }
+  .show_transaction .pic {
+    text-align: center;
+  }
+  .show_transaction .pic .transaction_pic {
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+  .show_transaction .pb-container {
+    padding-right: 20px;
+  }
+  .show_transaction .pb-container input {
+    width: 100%;
+    padding: 10px;
+  }
+  .show_transaction .header {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .show_transaction .header h1 {
+    font-size: 20pt;
+  }
+  .show_transaction .header .l_fullname,
+  .show_transaction .header .b_fullname {
+    display: inline;
+  }
+  .show_transaction .details {
+    padding: 20px;
+    /** end of .details_table **/
+  
+  }
+  .show_transaction .details .details_table {
+    width: 100%;
+  }
+  .show_transaction .details .details_table tr {
+    padding-bottom: 20px;
+  }
+  .show_transaction .details .details_table tr td {
+    padding: 15px 5px;
+  }
+  .show_transaction .details .details_table tr td:first-child {
+    width: 50%;
+    font-weight: bold;
+    padding-right: 10px;
+  }
+  .show_transaction .details .reject_button,
+  .show_transaction .details .paidback_button,
+  .show_transaction .details .delete {
+    display: block;
+    text-align: center;
+    background: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 0;
+  }
 }

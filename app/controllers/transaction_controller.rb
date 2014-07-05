@@ -25,6 +25,19 @@ class TransactionController < ActionController::Base
     render :json => {"status" => 200}
   end
 
+  def info
+    t = Transaction.find(params[:id])
+    lender = User.find(t.id_l)
+    borrower = User.find(t.id_b)
+    @info = JSON.parse(t.to_json)
+    @info["pic_l"] = lender.profile_picture
+    @info["pic_b"] = borrower.profile_picture
+    @info["fn_l"] = lender.fullname
+    @info["fn_b"] = borrower.fullname
+    @info["status"] = 200
+    render :json => @info
+  end
+
   def iou
     @transactions = Transaction.where(:id_b => current_user.id)
   end

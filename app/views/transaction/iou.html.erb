@@ -16,5 +16,23 @@
 		</li>
 	<% end %>
 </ul>
-
+<div class="show_transaction">
+	<div class="pic">
+		<img src="#" class="transaction_pic borrower" />
+		<i class="fa fa-2x fa-arrow-right"></i>
+		<img src="#" class="transaction_pic lender" />
+	</div>
+	<div class="header">
+		<div class="l_fullname"></div> owes <div class="b_fullname"></div>
+		<h1 class="amount"></h1>
+	</div>
+	<div class="details">
+		<table class="details_table">
+			<tr>
+				<td>Status</td>
+				<td class="status"></td>
+			</tr>
+		</table>
+	</div>
+</div>
 <%= javascript_include_tag "transactions/iou-uoi" %>
