@@ -19,8 +19,8 @@ class TransactionController < ActionController::Base
                           'description' => params["Description"] }
     Transaction.newtransaction(transaction_info)
 
-    @email_to = params["BorrowerEmail"]
-    UserMailer.new_transaction(@email_to, transaction_info).deliver
+    # @email_to = params["BorrowerEmail"]
+    # UserMailer.new_transaction(@email_to, transaction_info).deliver
 
     render :json => {"status" => 200}
   end
