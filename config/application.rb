@@ -9,6 +9,7 @@ Bundler.require(:default, Rails.env)
 module IouApp
   class Application < Rails::Application
     config.assets.enabled = true
+    config.assets.compile = true
 
     config.assets.precompile = ['*.js', '*.css', '*.jpg', '*.png', '*.svg', '*.eot', '*.woff', '*.ttf', '*.css.erb']
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
