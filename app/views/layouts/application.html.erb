@@ -7,36 +7,48 @@
 	<meta name="HandheldFriendly" content="True">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
-	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 	<%= stylesheet_link_tag "transaction", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "reset", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "trunk", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "font-awesome.css", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "sign_in", media: "all", "data-turbolinks-track" => true %>
 
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<%= stylesheet_link_tag "flat-ui", media: "all", "data-turbolinks-track" => true %>
+
 	<%= javascript_include_tag "trunk", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container">
-		<header class="slide">     <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-			<ul id="navToggle" class="burger slide">    <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-				<li></li><li></li><li></li>
-			</ul>
-			<h1>loanify</h1>
-		</header>
-		<nav class="slide close">
-			<ul>
-				<li><a href="/profile" class="active"><i class="fa fa-user"></i>Profile</a></li>
-				<li><a href="/transaction/create"><i class="fa fa-star"></i>Create</a></li>
-				<li><a href="/iou"><i class="fa fa-money"></i>Debts</a></li>
-				<li><a href="/uoi"><i class="fa fa-usd"></i>Loans</a></li>
-				<li><%= link_to(raw('<i class="fa fa-sign-out"></i> Logout'), destroy_user_session_path, :method => :delete) %></li>
-			</ul>
-		</nav>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<header class="slide">     <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+				<ul id="navToggle" class="burger slide">    <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+					<li></li><li></li><li></li>
+				</ul>
+				<h1>loanify</h1>
+				<nav class="slide close">
+					<ul>
+						<li><a href="/profile" class="active"><i class="fa fa-user"></i>Profile</a></li>
+						<li><a href="/transaction/create"><i class="fa fa-star"></i>Create</a></li>
+						<li><a href="/iou"><i class="fa fa-money"></i>Debts</a></li>
+						<li><a href="/uoi"><i class="fa fa-usd"></i>Loans</a></li>
+						<li><%= link_to(raw('<i class="fa fa-sign-out"></i> Logout'), destroy_user_session_path, :method => :delete) %></li>
+					</ul>
+				</nav>
+			</header>
+		</div>
 
 		<div class="content slide">
 			<%= yield %>
