@@ -1,20 +1,32 @@
-<ul class="transaction_container">
+<div class="row transaction_container">
 	<% @transactions.each do |t| %>
 		<% b = User.find(t.id_b) %>
-		<li data-id=<%= t.id %>>
-			<img src="<%= b.profile_picture %>" class="transaction_pic" />
+		<div class="row each_transaction" data-id=<%= t.id %>>
+			<div class="col-xs-3">
+				<div align="center">
+					<img src="<%= b.profile_picture %>" class="transaction_pic" />
+				</div>
+			</div>
 			<% if t.reject %>
-				<div class="icon"><i class="fa fa-2x fa-times reject"></i></div>
-				<b><%= b.fullname %></b> rejected <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+				<div class="icon col-xs-2">
+					<i class="fa fa-2x fa-times reject"></i>
+				</div>
+				<div class="col-xs-7">
+					<b><%= b.fullname %></b> rejected <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+				</div>
 			<% elsif t.paidback %>
-				<div class="icon"><i class="fa fa-2x fa-check check"></i></div>
+				<div class="icon col-xs-2"><i class="fa fa-2x fa-check check"></i></div>
 				<b><%= b.fullname %></b> paidback <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
 			<% else %>
-				<div class="icon"><i class="fa fa-2x fa-money owe"></i></div>
-				<b><%= b.fullname %></b> owes <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+				<div class="icon col-xs-2">
+					<i class="fa fa-2x fa-money owe"></i>
+				</div>
+				<div class="col-xs-7">
+					<b><%= b.fullname %></b> owes <div class="money">$<%= sprintf('%.2f', t.amount) %></div>
+				</div>
 			<% end %>
-		</li>
+		</div>
 	<% end %>
-</ul>
+</div>
 
 <%= javascript_include_tag "transactions/iou-uoi" %>

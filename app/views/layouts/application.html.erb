@@ -12,8 +12,8 @@
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 	<%= stylesheet_link_tag "transaction", media: "all", "data-turbolinks-track" => true %>
-	<%= stylesheet_link_tag "reset", media: "all", "data-turbolinks-track" => true %>
-	<%= stylesheet_link_tag "trunk", media: "all", "data-turbolinks-track" => true %>
+	<%= stylesheet_link_tag "app", media: "all", "data-turbolinks-track" => true %>
+
 	<%= stylesheet_link_tag "font-awesome.css", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag "sign_in", media: "all", "data-turbolinks-track" => true %>
 
@@ -31,26 +31,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<header class="slide">     <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-				<ul id="navToggle" class="burger slide">    <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
-					<li></li><li></li><li></li>
-				</ul>
-				<h1>loanify</h1>
-				<nav class="slide close">
-					<ul>
-						<li><a href="/profile" class="active"><i class="fa fa-user"></i>Profile</a></li>
-						<li><a href="/transaction/create"><i class="fa fa-star"></i>Create</a></li>
-						<li><a href="/iou"><i class="fa fa-money"></i>Debts</a></li>
-						<li><a href="/uoi"><i class="fa fa-usd"></i>Loans</a></li>
-						<li><%= link_to(raw('<i class="fa fa-sign-out"></i> Logout'), destroy_user_session_path, :method => :delete) %></li>
-					</ul>
-				</nav>
-			</header>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+				<span class="sr-only">Toggle navigation</span>
+			</button>
+			<a class="navbar-brand" href="#">loanify</a>
 		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse-01">
+			<ul class="nav navbar-nav">           
+				<li class="active"><a href="/profile">Profile</a></li>
+				<li><a href="/transaction/create">Create</a></li>
+				<li><a href="/iou">Debts</a></li>
+				<li><a href="/uoi">Loans</a></li>
+				<li><%= link_to(raw('Logout'), destroy_user_session_path, :method => :delete) %></li>
+			</ul>           
+		</div><!-- /.navbar-collapse -->
+	</nav>
+	<div class="container-fluid">
 
-		<div class="content slide">
+		<div class="row content">
 			<%= yield %>
 		</div>
 	</div>

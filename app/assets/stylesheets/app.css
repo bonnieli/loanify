@@ -1,0 +1,10 @@
+body .transaction_container .each_transaction {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+body .transaction_container .transaction_pic {
+  border-radius: 25px;
+}
+body .transaction_container .money {
+  display: inline-block;
+}

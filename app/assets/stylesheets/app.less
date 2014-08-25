@@ -1,0 +1,18 @@
+.border(@r) {
+	border-radius: @r;
+}
+
+body {
+	.transaction_container {
+		.each_transaction {
+			border-bottom: 1px solid #ccc;
+			padding: 10px 0;
+		}
+		.transaction_pic {
+			.border(25px);
+		}
+		.money {
+			display: inline-block;
+		}
+	}
+}
