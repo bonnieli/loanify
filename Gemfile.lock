@@ -61,6 +61,10 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    koala (1.10.0)
+      addressable
+      faraday
+      multi_json
     launchy (2.4.2)
       addressable (~> 2.3)
     letter_opener (1.2.0)
@@ -162,6 +166,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  koala (~> 1.10.0rc)
   letter_opener
   oauth2
   omniauth

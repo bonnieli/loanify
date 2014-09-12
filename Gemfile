@@ -45,6 +45,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 
+gem "koala", "~> 1.10.0rc"
+
 ## For heroku (?)
 gem 'rails_12factor', group: :production
 

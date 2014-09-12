@@ -2,12 +2,13 @@
 <%= stylesheet_link_tag    "datepicker", media: "all", "data-turbolinks-track" => true %>
 
 <div class="create_transaction_container">
+	<div id="selected_users"></div>
 	<form id="create_transaction">
 		<input class="typeahead" type="text" name="Name" placeholder="Search for people" >
+		<!-- HIDDEN FIELDS -->
 		<input type="hidden" name="BorrowerKey">
-		<input type="hidden" name="B_Picture">
-		<input type="hidden" name="BorrowerEmail" id="be">
-		<input type="text" name="Amount" placeholder="Amount" id="Amount">
+		<!-- END HIDDEN FIELDS -->
+		<input type="text" name="Amount" placeholder="Amount (this amount will be split among the selected users)" id="Amount">
 		<input type="text" name="Date" class="datepicker" data-date-format="dd-mm-yyyy" placeholder="Date">
 		<input type="textbox" name="Description" placeholder="Description">
 		<input type="submit" value="Submit" id="submit">

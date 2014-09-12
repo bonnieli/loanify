@@ -81,6 +81,32 @@ body {
 				cursor: pointer;
 			}
 		}
+		#selected_users {
+			margin-bottom: 15px;
+			.selected_user_container {
+				display: inline-block;
+				margin-right: 10px;
+				border: 1px solid #ccc;
+				img {
+					float:left;
+					margin-right: 10px;
+				}
+				.selected_user_content {
+					display: inline-block;
+					height: 100%;
+					line-height: 30px;
+				}
+				.selected_user_delete {
+					display: inline-block;
+					cursor: pointer;
+					background-color: @red;
+					color: @white;
+					line-height: 30px;
+					margin-left: 10px;
+					padding: 0 10px;
+				}
+			}
+		}
 	}
 	#profile, #c_transaction, #iou_button, #uoi_button {
 		display: block;

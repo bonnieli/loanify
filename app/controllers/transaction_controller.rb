@@ -5,22 +5,19 @@ class TransactionController < ActionController::Base
   before_action :authenticate_user! #checks if user is signed in
 
   def create
-    all_users = User.allusers.to_json
+    all_users = User.find(current_user.id).friends_registered.to_json
     unless all_users == '[]'
       @all_users = all_users
     end
   end
 
   def post
-    transaction_info = {  'borrower_key' => params["BorrowerKey"].to_i,
+    transaction_info = {  'borrower_key' => params["BorrowerKey"],
                           'lender_key' => current_user.id,
                           'amount' => params["Amount"].to_f,
                           'transaction_date' => Time.parse(params["Date"]),
                           'description' => params["Description"] }
     Transaction.newtransaction(transaction_info)
-
-    # @email_to = params["BorrowerEmail"]
-    # UserMailer.new_transaction(@email_to, transaction_info).deliver
 
     render :json => {"status" => 200}
   end

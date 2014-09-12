@@ -58,6 +58,32 @@ body .create_transaction_container #create_transaction #submit {
   color: #ffffff;
   cursor: pointer;
 }
+body .create_transaction_container #selected_users {
+  margin-bottom: 15px;
+}
+body .create_transaction_container #selected_users .selected_user_container {
+  display: inline-block;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+body .create_transaction_container #selected_users .selected_user_container img {
+  float: left;
+  margin-right: 10px;
+}
+body .create_transaction_container #selected_users .selected_user_container .selected_user_content {
+  display: inline-block;
+  height: 100%;
+  line-height: 30px;
+}
+body .create_transaction_container #selected_users .selected_user_container .selected_user_delete {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #ff0000;
+  color: #ffffff;
+  line-height: 30px;
+  margin-left: 10px;
+  padding: 0 10px;
+}
 body #profile,
 body #c_transaction,
 body #iou_button,

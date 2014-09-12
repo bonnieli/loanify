@@ -1,3 +1,4 @@
+var users_selected = {};
 var transaction_date = $(".datepicker").datepicker({
 
 }).on('changeDate', function(ev) {
@@ -45,17 +46,38 @@ $(' .typeahead').typeahead({
   	].join('\n'),
   	suggestion: Handlebars.compile('<img class="profile_pic" src="{{ profile_picture }}">{{ full_name }}')
   }
-}).on("typeahead:selected typeahead:autocompleted", function(e, suggestion, name){
-	document.getElementById("create_transaction").elements["BorrowerKey"].value = suggestion.id;
-	document.getElementById("create_transaction").elements["B_Picture"].value = suggestion.profile_picture;
-	document.getElementById("create_transaction").elements["BorrowerEmail"].value = suggestion.email_address;
+}).on("typeahead:selected", function(e, suggestion, name){
+  $(".typeahead").val('');
+  if (!users_selected[suggestion.id]) {
+    users_selected[suggestion.id] = suggestion;
+    build_selected_user(suggestion);
+  }
 });
 
+$(".typeahead").focus(function() {
+    // console.log('in');
+}).blur(function() {
+  $(this).val('');
+});
+
+function build_selected_user(suggestion) {
+  var str = '<div class="selected_user_container">';
+  str += '<img src="' + suggestion.profile_picture + '" width="30px">';
+  str += '<div class="selected_user_content">'+ suggestion.full_name + '</div>';
+  str += '<div class="selected_user_delete" data-id=' + suggestion.id + '>';
+  str += '<i class="fa fa-times"></i></div>';
+  str += '</div>';
+  $("#selected_users").append(str);
+}
+
+$("#selected_users").on('click', '.selected_user_delete', function() {
+  var id = parseInt($(this).data('id'));
+  delete users_selected[id];
+  $(this).parent().remove();
+});
 
 $("#create_transaction").validate({
   rules: {
-    // simple rule, converted to {required:true}
-    Name: "required",
     // compound rule
     Amount: {
       required: true,
@@ -66,8 +88,9 @@ $("#create_transaction").validate({
     	maxlength: 255
     }
   },
-  submitHandler: function(form) {
-  	var data = { "BorrowerKey": $("input[name=BorrowerKey]").val(),
+  submitHandler: function(form, event) {
+    // event.preventDefault();
+  	var data = { "BorrowerKey": users_selected,
 								"Amount": $("input[name=Amount]").val(),
 								"Date": $("input[name=Date]").val(),
 								"Description": $("input[name=Description]").val() }
