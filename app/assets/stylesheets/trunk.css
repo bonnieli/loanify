@@ -100,9 +100,73 @@ nav li a:hover {color: #000;}
 }
 
 
+@media only screen and (min-width: 780px) {
+header {
+	color:white !important;
+	background-color: #271940;
+	background-image: url('/assets/poly_blue.png');
+	background-size: 100%;
+	}
+	header h1 {
+		
+	color:white !important;
+	}
+.cNavBar {
 
 
+	vertical-align: top;
+	height: 850px;
+	width:150px;
+	top:0;
+	display:inline-block;
+	/*background-image: url('/assets/poly_bg.png');*/
+	/*background-size: 100%;*/
+	background-color: #f3f5f6;
+}
+nav {
 
+position:relative;
+top:auto;
+right:auto;
+
+}
+nav li  {
+ 	margin-top:20px;
+
+}
+nav li a {
+	margin-left:10px;
+	font-size:14px;
+	color:black;
+width:100px;
+
+display:block;
+
+}
+
+#BalanceHistory {
+		display:inline-block;
+	width:49% !important;
+}
+
+#CurrentOutstanding_d {
+	margin-bottom:80px;
+	display:inline-block;
+	width:49% !important;
+}
+
+#CurrentOutstanding_ar {
+		margin-bottom:80px;
+		display:inline-block;
+	width:49% !important;
+}
+
+#History_d {
+	display:inline-block;
+	width:49% !important;
+}
+
+}
 
 @media only screen and (max-width: 780px) {
 
