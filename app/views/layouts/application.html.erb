@@ -22,21 +22,24 @@
 </head>
 <body>
 	<div class="container">
-		<header class="slide">     <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
+				<header class="slide">     <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
 			<ul id="navToggle" class="burger slide">    <!--	Add "slideRight" class to items that move right when viewing Nav Drawer  -->
 				<li></li><li></li><li></li>
 			</ul>
 			<h1>loanify</h1>
 		</header>
+		<div class="cNavBar">
+
 		<nav class="slide close">
 			<ul>
-				<li><a href="/profile" class="active"><i class="fa fa-user"></i>Profile</a></li>
-				<li><a href="/transaction/create"><i class="fa fa-star"></i>Create</a></li>
-				<li><a href="/iou"><i class="fa fa-money"></i>Debts</a></li>
-				<li><a href="/uoi"><i class="fa fa-usd"></i>Loans</a></li>
-				<li><%= link_to(raw('<i class="fa fa-sign-out"></i> Logout'), destroy_user_session_path, :method => :delete) %></li>
+				<li><a href="/profile" class="active"><i class="fa fa-user" style="width:20px"></i>Profile</a></li>
+				<li><a href="/transaction/create"><i class="fa fa-star"style="width:20px"></i>Create</a></li>
+				<li><a href="/iou"><i class="fa fa-money"style="width:20px"></i>Debts</a></li>
+				<li><a href="/uoi"><i class="fa fa-usd"style="width:20px"></i>Loans</a></li>
+				<li><%= link_to(raw('<i class="fa fa-sign-out" style="width:20px"></i>Logout'), destroy_user_session_path, :method => :delete) %></li>
 			</ul>
 		</nav>
+		</div>
 
 		<div class="content slide">
 			<%= yield %>
