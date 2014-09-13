@@ -3,18 +3,31 @@ body .container .content {
   margin-top: 65px;
 }
 @media only screen and (min-width: 780px) {
-body .container .content {
+  body {
+    background-image:url('http://www.davidczhu.com/wp/bg.jpg');
+  }
+  .container {
+    background-color:white;
+    margin: auto;
+    margin-top:30px;
+    height:850px;
+    width:850px;
+    border-radius:25px;
+  }
 
-  margin-top: 10px;
-  display:inline-block;
-  width:80%;
-}
+  .create_transaction_container {
+    padding:60px !important;
+  }
+  body .container .content {
+
+   margin-top: 10px;
+   display:inline-block;
+   width:80%;
+   }
 }
 
 @media only screen and (min-device-width: 480px) {
-  .container {
-    margin: 0 auto;
-  }
+
 }
 
 body .greeting {
