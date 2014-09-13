@@ -1,20 +1,29 @@
 class Transaction < ActiveRecord::Base
 	
 	def self.newtransaction(input) #new transaction
-		transaction = Transaction.new
-		transaction.transaction_date = input["transaction_date"]
-		transaction.description = input["description"]
-		transaction.paidback = false
-		transaction.reject = false
-		transaction.l_fullname = User.user_fullname(input["lender_key"])
-	    transaction.b_fullname = User.user_fullname(input["borrower_key"])
-		transaction.id_b = input["borrower_key"]
-		transaction.id_l = input["lender_key"]
-		transaction.amount = input["amount"]
-	    transaction.b_email = User.find(input["borrower_key"]).email_address
-	    transaction.l_email = User.find(input["lender_key"]).email_address
-		transaction.save
-		return transaction
+		borrower_key_array = input["borrower_key"]
+		borrowers_count = borrower_key_array.count
+		each_amount = input["amount"] / borrowers_count
+
+		lender_fullname = User.user_fullname(input["lender_key"])
+		lender_email = User.find(input["lender_key"]).email_address
+		borrower_key_array.each do |key, val|
+			transaction = Transaction.new
+			transaction.transaction_date = input["transaction_date"]
+			transaction.description = input["description"]
+			transaction.paidback = false
+			transaction.reject = false
+			transaction.l_fullname = lender_fullname
+		    transaction.b_fullname = User.user_fullname(key)
+			transaction.id_b = key
+			transaction.id_l = input["lender_key"]
+			transaction.amount = each_amount
+		    transaction.b_email = User.find(key).email_address
+		    transaction.l_email = lender_email
+			transaction.save
+		end
+
+		return true
 	end
 
 	def self.paidback(input) #payback a transaction
