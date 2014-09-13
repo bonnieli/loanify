@@ -41,12 +41,13 @@ class User < ActiveRecord::Base
 			# TODO: Clean out users from Facebook API to reduce calls to database
 			if f['installed']
 				auth_obj = Authentication.find_by_uid(f['id'])
-				if auth_obj
-					registered.push( User.find(auth_obj.user_id) )
-				end
+				# if auth_obj
+				# 	registered.push( User.find(auth_obj.user_id) )
+				# end
+				registered.push( User.find(auth_obj.user_id) )
 			end
 		end
-		return registered
+		return registered.to_json
 	end
 
 	#add an user

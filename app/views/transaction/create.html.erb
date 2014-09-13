@@ -30,5 +30,5 @@
 
 <%= javascript_include_tag "jquery.validate", "data-turbolinks-track" => true %>
 
-<script>var all_users = <%= raw CGI.unescapeHTML(@all_users) %>;</script>
+<script>var all_users = JSON.parse(<%= raw CGI.unescapeHTML(@all_users) %>);</script>
 <%= javascript_include_tag "create_transaction", "data-turbolinks-track" => true %>
