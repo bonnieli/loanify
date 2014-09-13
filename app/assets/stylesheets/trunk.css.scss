@@ -105,7 +105,7 @@ nav li a:hover {color: #000;}
 header {
 	color:white !important;
 	background-color: #271940;
-	background-image: url('/assets/poly_blue.png');
+	background-image: image-url('/assets/poly_blue.png');
 	background-size: 100%;
 	}
 	header h1 {
@@ -120,8 +120,6 @@ header {
 	width:150px;
 	top:0;
 	display:inline-block;
-	/*background-image: url('/assets/poly_bg.png');*/
-	/*background-size: 100%;*/
 	background-color: #f3f5f6;
 }
 nav {
