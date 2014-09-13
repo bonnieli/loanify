@@ -101,6 +101,12 @@ nav li a:hover {color: #000;}
 
 
 @media only screen and (min-width: 780px) {
+	.container {
+
+		width:850px;
+		height:850px;
+
+	}
 header {
 	color:white !important;
 	background-color: #271940;
@@ -108,7 +114,7 @@ header {
 	background-size: 100%;
 	}
 	header h1 {
-		
+
 	color:white !important;
 	}
 .cNavBar {
