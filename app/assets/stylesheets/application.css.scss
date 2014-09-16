@@ -4,7 +4,7 @@ body .container .content {
 }
 @media only screen and (min-width: 780px) {
   body {
-    background-image: url('app.jpg');
+    background-image: url(image-path('app.jpg'));
   }
   .container {
     background-color: white;
