@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>LOANIFY</title>
+	<%= favicon_link_tag 'favicon.ico' %>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,7 +19,7 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<%= javascript_include_tag "trunk", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 	<div class="container">
