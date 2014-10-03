@@ -101,6 +101,7 @@ $("#create_transaction").validate({
 		  data: data,
 		  success: function(data) {
 		  	console.log('SUCCESS');
+        $("#selected_users").hide();
 		  	$("#create_transaction").slideUp( function() {
 		  		$("#success").slideDown();
 		  	});
