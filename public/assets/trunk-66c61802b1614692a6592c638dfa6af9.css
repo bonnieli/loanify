@@ -1,0 +1,546 @@
+/* line 1, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 10pt;
+  color: #000;
+}
+
+/* line 7, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.container {
+  overflow: hidden;
+  /*  Prevents Flickering  */
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+}
+
+/* line 19, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+header {
+  height: 60px;
+  position: relative;
+  /*background-image: url('/assets/poly_bg.png');*/
+  /*background-size: 100%;*/
+  background-color: #f3f5f6;
+}
+
+/* line 26, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+header h1 {
+  color: #9aa6af;
+  text-align: left;
+  font-size: 27px;
+  line-height: 60px;
+  font-weight: bold;
+  padding-left: 20px;
+  font: 100 3em/1.5em 'Lato';
+  font: Ultra-Light 100 3em/1.5em 'Lato';
+  font: Ultra-Light 100 3em/1.5em 'Lato', sans-serif;
+}
+
+/* line 38, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.burger {
+  position: absolute;
+  float: left;
+  padding: 10px;
+  top: 4px;
+  left: 10px;
+  display: none;
+}
+
+/* line 47, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.burger li {
+  width: 30px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 3px;
+  margin: 5px 0;
+}
+
+/* line 54, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.burger.open li {
+  background-color: #d9dde1;
+}
+
+/* line 56, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+nav {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+/* line 61, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+nav li {
+  float: left;
+  display: inline-block;
+}
+
+/* line 66, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+nav li a {
+  font-size: 11px;
+  color: #9aa6af;
+  padding: 24px 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* line 75, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+nav li a:hover {
+  color: #000;
+}
+
+/*  Removable CSS  */
+/* line 85, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.header-section,
+.body-section,
+.footer-section {
+  padding: 20px;
+}
+
+/* line 87, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.header-section {
+  background-color: #ffffff;
+}
+
+/* line 88, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.body-section {
+  background-color: #f4f5f6;
+}
+
+/* line 89, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.footer-section {
+  background-color: #dadee1;
+}
+
+/* line 90, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.placefiller {
+  text-align: center;
+  font-size: 20px;
+  border: 1px dashed rgba(190, 196, 202, 0.5);
+}
+
+/* line 95, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.header-section .placefiller {
+  line-height: 300px;
+}
+
+/* line 96, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.body-section .placefiller {
+  line-height: 900px;
+}
+
+/* line 97, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+.footer-section .placefiller {
+  line-height: 200px;
+  border: 1px dashed rgba(190, 196, 202, 0.9);
+}
+
+@media only screen and (min-width: 780px) {
+  /* line 105, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  header {
+    color: white !important;
+    background-color: #271940;
+    background-image: url("/assets/poly_blue.png");
+    background-size: 100%;
+  }
+
+  /* line 111, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  header h1 {
+    color: white !important;
+  }
+
+  /* line 115, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  .cNavBar {
+    vertical-align: top;
+    height: 850px;
+    width: 150px;
+    top: 0;
+    display: inline-block;
+    background-color: #f3f5f6;
+  }
+
+  /* line 125, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav {
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+
+  /* line 132, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li {
+    margin-top: 20px;
+  }
+
+  /* line 136, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li a {
+    margin-left: 10px;
+    font-size: 14px;
+    color: black;
+    width: 100px;
+    display: block;
+  }
+
+  /* line 146, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  #BalanceHistory {
+    display: inline-block;
+    width: 49% !important;
+  }
+
+  /* line 151, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  #CurrentOutstanding_d {
+    margin-bottom: 80px;
+    display: inline-block;
+    width: 49% !important;
+  }
+
+  /* line 157, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  #CurrentOutstanding_ar {
+    margin-bottom: 80px;
+    display: inline-block;
+    width: 49% !important;
+  }
+
+  /* line 163, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  #History_d {
+    display: inline-block;
+    width: 49% !important;
+  }
+}
+@media only screen and (max-width: 780px) {
+  /* line 172, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  header {
+    height: 60px;
+    z-index: 2;
+    background-color: #271940;
+    background-image: url("/assets/poly_blue.png");
+    background-size: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    /* starting point */
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* line 189, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  header h1 {
+    color: #ffffff;
+    text-align: center;
+    padding-left: 0;
+    display: block;
+    font-size: 20pt;
+    padding-top: 10px;
+  }
+
+  /* line 197, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  .burger {
+    display: block;
+  }
+
+  /*  Nav Drawer Layout  */
+  /* line 201, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav {
+    position: relative;
+  }
+
+  /* line 203, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav ul {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  /* line 207, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li {
+    display: block;
+    float: none;
+  }
+
+  /* line 211, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li a {
+    padding: 22px 25px;
+    letter-spacing: 3px;
+    font-size: 14px;
+  }
+
+  /* line 216, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li a.logo {
+    display: none;
+  }
+
+  /* line 219, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li a.active {
+    color: #fff;
+    background-color: #141e23;
+  }
+
+  /* line 223, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li a:hover {
+    color: #fff;
+    background-color: #19252c;
+  }
+
+  /* line 228, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li a .fa {
+    margin-right: 10px;
+  }
+
+  /* line 233, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav li:first-child a.active,
+  nav li:first-child a:hover {
+    border-radius: 10px 0 0 0;
+  }
+
+  /* line 235, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  .header-section {
+    margin-top: 60px;
+  }
+
+  /* NAVIGATION ANNIMATION */
+  /* line 239, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav {
+    width: 240px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0;
+    background-color: #1d2d35;
+    border-radius: 8px;
+    /* starting point */
+    opacity: 0;
+    -webkit-transform: translate3d(5%, 0, 0) scale(0.97);
+    -moz-transform: translate3d(5%, 0, 0) scale(0.97);
+    transform: translate3d(5%, 0, 0) scale(0.97);
+  }
+
+  /*Nav Expanding Open Effect*/
+  /* line 257, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav.open {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+    -webkit-animation: slideIn .35s ease-in-out;
+    -moz-transform: translate3d(0, 0, 0) scale(1);
+    -moz-animation: slideIn .35s ease-in-out;
+    transform: translate3d(0, 0, 0) scale(1);
+    animation: slideIn .35s ease-in-out;
+  }
+
+  @-webkit-keyframes slideIn {
+    /* line 270, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(5%, 0, 0) scale(0.97);
+    }
+
+    /* line 272, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+  @-moz-keyframes slideIn {
+    /* line 276, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      opacity: 0;
+      -moz-transform: translate3d(5%, 0, 0) scale(0.97);
+    }
+
+    /* line 278, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      opacity: 1;
+      -moz-transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+  @keyframes slideIn {
+    /* line 282, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      opacity: 0;
+      transform: translate3d(5%, 0, 0) scale(0.97);
+    }
+
+    /* line 284, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+  /*Nav Shrinking Closed Effect*/
+  /* line 289, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  nav.close {
+    opacity: 0;
+    display: none;
+    -webkit-transform: translate3d(5%, 0, 0) scale(0.97);
+    -webkit-animation: slideOut .3s ease-in-out;
+    -moz-transform: translate3d(5%, 0, 0) scale(0.97);
+    -moz-animation: slideOut .3s ease-in-out;
+    transform: translate3d(5%, 0, 0) scale(0.97);
+    animation: slideOut .3s ease-in-out;
+  }
+
+  @-webkit-keyframes slideOut {
+    /* line 303, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* line 305, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      opacity: 0;
+      -webkit-transform: translate3d(5%, 0, 0) scale(0.97);
+    }
+}
+
+  @-moz-keyframes slideOut {
+    /* line 309, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      opacity: 1;
+      -moz-transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* line 311, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      opacity: 0;
+      -moz-transform: translate3d(5%, 0, 0) scale(0.97);
+    }
+}
+
+  @keyframes slideOut {
+    /* line 315, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    /* line 317, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      opacity: 0;
+      transform: translate3d(5%, 0, 0) scale(0.97);
+    }
+}
+
+  /* CONTENT ANNIMATION */
+  /* line 324, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  .content {
+    /* starting point */
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 1;
+  }
+
+  /*Content Sliding Open Effect*/
+  /* line 335, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  header.open,
+  .content.open {
+    -webkit-transform: translate3d(240px, 0, 0);
+    -webkit-animation: open .5s ease-in-out;
+    -moz-transform: translate3d(240px, 0, 0);
+    -moz-animation: open .5s ease-in-out;
+    transform: translate3d(240px, 0, 0);
+    animation: open .5s ease-in-out;
+  }
+
+  @-webkit-keyframes open {
+    /* line 346, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    /* line 347, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    70% {
+      -webkit-transform: translate3d(260px, 0, 0);
+    }
+
+    /* line 348, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      -webkit-transform: translate3d(240px, 0, 0);
+    }
+}
+
+  @-moz-keyframes open {
+    /* line 351, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      -moz-transform: translate3d(0, 0, 0);
+    }
+
+    /* line 352, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    70% {
+      -moz-transform: translate3d(260px, 0, 0);
+    }
+
+    /* line 353, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      -moz-transform: translate3d(240px, 0, 0);
+    }
+}
+
+  @keyframes open {
+    /* line 356, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* line 357, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    70% {
+      transform: translate3d(260px, 0, 0);
+    }
+
+    /* line 358, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      transform: translate3d(240px, 0, 0);
+    }
+}
+
+  /*Content Sliding Closed Effect*/
+  /* line 364, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+  header.close,
+  .content.close {
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-animation: close .3s ease-in-out;
+    -moz-transform: translate3d(0, 0, 0);
+    -moz-animation: close .3s ease-in-out;
+    transform: translate3d(0, 0, 0);
+    animation: close .3s ease-in-out;
+  }
+
+  @-webkit-keyframes close {
+    /* line 375, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      -webkit-transform: translate3d(240px, 0, 0);
+    }
+
+    /* line 376, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+  @-moz-keyframes close {
+    /* line 379, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      -moz-transform: translate3d(240px, 0, 0);
+    }
+
+    /* line 380, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      -moz-transform: translate3d(0, 0, 0);
+    }
+}
+
+  @keyframes close {
+    /* line 383, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    0% {
+      transform: translate3d(240px, 0, 0);
+    }
+
+    /* line 384, /Users/kenli/git/loanify/app/assets/stylesheets/trunk.css.scss */
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+}
+}

@@ -1,0 +1,194 @@
+@import url("http://fonts.googleapis.com/css?family=Lato:100,400");
+/* line 17, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .container .content {
+  margin-top: 65px;
+}
+
+@media only screen and (min-width: 780px) {
+  /* line 21, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+  body {
+    background-image: url("app.jpg");
+  }
+  /* line 23, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+  body .container {
+    background-color: white;
+    margin: auto;
+    margin-top: 30px;
+    height: 850px;
+    width: 850px;
+    border-radius: 25px;
+  }
+  /* line 30, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+  body .container .content {
+    margin-top: 10px !important;
+    display: inline-block;
+    width: 80%;
+  }
+
+  /* line 38, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+  .create_transaction_container {
+    padding: 60px !important;
+  }
+}
+/* line 48, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .container {
+  height: auto;
+}
+/* line 50, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .container .content {
+  margin-top: 65px;
+}
+/* line 52, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .container .content #no_transactions {
+  font-size: 14pt;
+  font-weight: bold;
+  margin: 10px 0;
+}
+/* line 61, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .greeting {
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+/* line 68, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body #log_out, body #go_home {
+  display: block;
+  text-decoration: none;
+  background: white;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 5px 0;
+}
+/* line 78, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container {
+  padding: 20px;
+}
+/* line 80, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #create_transaction {
+  width: 100%;
+}
+/* line 82, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #create_transaction .twitter-typeahead {
+  width: 100%;
+}
+/* line 85, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #create_transaction input, body .create_transaction_container #create_transaction select {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* Firefox */
+  margin-top: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  background-color: #f1f2f3;
+}
+/* line 96, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #create_transaction .profile_pic {
+  border-radius: 50%;
+  width: 30px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+/* line 102, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #create_transaction #submit {
+  background-color: #3ab8c6;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+}
+/* line 109, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #selected_users {
+  margin-bottom: 15px;
+}
+/* line 111, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #selected_users .selected_user_container {
+  display: inline-block;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+/* line 115, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #selected_users .selected_user_container img {
+  float: left;
+  margin-right: 10px;
+}
+/* line 119, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #selected_users .selected_user_container .selected_user_content {
+  display: inline-block;
+  height: 100%;
+  line-height: 30px;
+}
+/* line 124, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .create_transaction_container #selected_users .selected_user_container .selected_user_delete {
+  display: inline-block;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  line-height: 30px;
+  margin-left: 10px;
+  padding: 0 10px;
+}
+/* line 136, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body #profile, body #c_transaction, body #iou_button, body #uoi_button {
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+/* line 144, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body #profile:hover, body #profile:active, body #c_transaction:hover, body #c_transaction:active, body #iou_button:hover, body #iou_button:active, body #uoi_button:hover, body #uoi_button:active {
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+}
+/* line 149, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .transaction {
+  background: #5fd2b5;
+  color: white;
+  padding: 10px;
+}
+/* line 153, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .transaction .description {
+  border-top: 1px dashed white;
+  margin-top: 5px;
+}
+/* line 158, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .tabs {
+  color: #fff;
+  font-size: 8pt;
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 0;
+  height: 23px;
+}
+/* line 165, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .tabs a {
+  float: left;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  list-style-type: none;
+  width: 25%;
+  text-align: center;
+  margin: 0;
+  padding: 5px 0;
+  border-right: 1px solid #fff;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 180, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .tabs a:last-child {
+  border-right: 0;
+}
+/* line 184, /Users/kenli/git/loanify/app/assets/stylesheets/application.css.scss */
+body .tabs .active {
+  background-color: rgba(216, 216, 216, 0.59);
+  color: #000;
+}

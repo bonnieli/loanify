@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+body #welcome {
+  background: url("http://i.imgur.com/QMFOVVx.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+body #welcome h1 {
+  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: #fff;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin-bottom: 0;
+}
+body #welcome #fb {
+  display: block;
+  background-color: rgba(67, 96, 156, 0.86);
+  padding: 20px;
+  text-align: center;
+  margin: 0 20px;
+  font-family: Helvetica;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 10pt;
+}
