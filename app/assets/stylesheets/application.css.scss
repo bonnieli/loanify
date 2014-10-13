@@ -20,25 +20,24 @@ body .container .content {
 @media only screen and (min-width: 780px) {
   body {
     background-image:url('app.jpg');
-  }
-  .container {
-    background-color:white;
-    margin: auto;
-    margin-top:30px;
-    height:850px;
-    width:850px;
-    border-radius:25px;
+    .container {
+      background-color:white;
+      margin: auto;
+      margin-top:30px;
+      height:850px;
+      width:850px;
+      border-radius:25px;
+      .content {
+        margin-top: 10px !important;
+        display: inline-block;
+        width: 80%;
+      }
+    }
   }
 
   .create_transaction_container {
     padding:60px !important;
   }
-  body .container .content {
-
-   margin-top: 10px;
-   display:inline-block;
-   width:80%;
-   }
 }
 
 @mixin border($r) {
